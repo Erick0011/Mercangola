@@ -9,11 +9,13 @@ def create_app():
     # Inicializa banco de dados
     db.init_app(app)
 
-    # Registra rotas
+    # Importa as rotas
     from app.routes import public, dashboard, store, admin
+
     app.register_blueprint(public.bp)
     app.register_blueprint(dashboard.bp, url_prefix="/dashboard")
     app.register_blueprint(store.bp, url_prefix="/store")
     app.register_blueprint(admin.bp, url_prefix="/admin")
+
 
     return app
