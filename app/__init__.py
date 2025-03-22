@@ -1,13 +1,20 @@
 from flask import Flask
-from app.extensions import db
+from app.extensions import db, login_manager
 from app.config import Config
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # Inicializa banco de dados
+    # Inicializa banco de dados e LoginManager
     db.init_app(app)
+    login_manager.init_app(app)
+
+    # Função para carregar o usuário pelo ID
+    from app.models import User
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
     # Importa as rotas
     from app.routes import public, dashboard, store, admin
