@@ -15,7 +15,7 @@ def login_user_service(user, remember=False):
     elif user.role == UserRole.CLIENT:
         # Tenta pegar a última URL visitada pelo cliente antes do login
         next_page = request.args.get("next")
-        return redirect(next_page or url_for("store.store_home"))
+        return redirect(next_page or url_for("store.store_home", tenant="Loja Padrão"))
 
     return redirect(url_for("public.home"))  # Caso de fallback
 
