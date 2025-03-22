@@ -21,18 +21,6 @@
     gap: 2px;
 }
 
-/* Cores para cada letra do nome */
-.m { color: #780116; }
-.e { color: #F7B538; }
-.r { color: #DB7C26; }
-.c { color: #D8572A; }
-.a { color: #C32F27; }
-.n { color: #F7B538; }
-.g { color: #DB7C26; }
-.o { color: #D8572A; }
-.l { color: #C32F27; }
-.a2 { color: #F7B538; }
-
 /* Estilos para os links */
 .navbar-nav .nav-link {
     color: #fff;
