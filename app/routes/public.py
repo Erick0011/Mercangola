@@ -7,7 +7,7 @@ bp = Blueprint("public", __name__)
 
 @bp.route("/")
 def home():
-    return "Página Inicial"
+    return render_template("public/home.html")
 
 
 @bp.route("/login", methods=["GET", "POST"])
