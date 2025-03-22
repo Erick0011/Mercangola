@@ -11,7 +11,7 @@ def create_app():
     login_manager.init_app(app)
 
     # Função para carregar o usuário pelo ID
-    from app.models import User
+    from app.models.user import User
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
