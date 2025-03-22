@@ -1,6 +1,7 @@
 from flask import redirect, url_for, request
-from flask_login import login_user
-from app.models.user import User, UserRole
+from flask_login import login_user, current_user
+from functools import wraps
+from app.models.user import UserRole
 
 def login_user_service(user, remember=False):
     """Autentica o usuário e redireciona com base na role"""
@@ -17,3 +18,14 @@ def login_user_service(user, remember=False):
         return redirect(next_page or url_for("store.store_home"))
 
     return redirect(url_for("public.home"))  # Caso de fallback
+
+def role_required(role):
+    """Restringe acesso a usuários com a role especificada"""
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if not current_user.is_authenticated or current_user.role != role:
+                return redirect(url_for("public.login"))
+            return f(*args, **kwargs)
+        return decorated_function
+    return decorator
