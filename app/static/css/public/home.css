@@ -21,31 +21,27 @@
     gap: 2px;
 }
 
-/* Estilos para os links */
+/* Estilo padrão: underline sempre visível */
 .navbar-nav .nav-link {
     color: #fff;
     font-size: 18px;
     margin-left: 15px;
-    position: relative;
+    text-decoration: underline; /* Sempre sublinhado */
+    text-underline-offset: 4px; /* Distância do sublinhado */
+    transition: all 0.3s ease-in-out;
+    padding: 5px 10px; /* Mantém um espaçamento interno */
 }
 
-/* Underline com a cor do botão "Criar Loja" */
-.underline-effect::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #F7B538;
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    transition: transform 0.3s ease;
-    transform: scaleX(0); /* Começa invisível */
+/* Efeito hover: muda para um botão */
+.navbar-nav .nav-link:hover {
+    color: #000; /* Cor do texto ao passar o mouse */
+    background-color: #F7B538; /* Cor do fundo ao passar o mouse */
+    border-radius: 5px; /* Cantos arredondados */
+    text-decoration: none; /* Remove a underline no hover */
 }
 
-.underline-effect:hover::after {
-    transform: scaleX(1); /* Aparece ao passar o mouse */
-}
+
+
 
 
 /* Hero Section */
@@ -197,4 +193,39 @@
     font-size: 16px;
     color: #333;
 }
+
+/* Seção Sobre */
+.sobre {
+    background-color: #fff;
+    text-align: left;
+}
+
+.sobre .titulo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #780116;
+}
+
+.sobre .mercangola {
+    color: #F7B538;
+}
+
+.sobre .descricao {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Animação Fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-in-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 

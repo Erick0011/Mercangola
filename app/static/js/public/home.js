@@ -39,3 +39,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const fadeElements = document.querySelectorAll(".fade-in");
+
+    function fadeInOnScroll() {
+        fadeElements.forEach(element => {
+            if (element.getBoundingClientRect().top < window.innerHeight * 0.9) {
+                element.classList.add("show");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", fadeInOnScroll);
+    fadeInOnScroll();
+});
+
