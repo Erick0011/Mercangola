@@ -1,14 +1,14 @@
 const phrases = [
     "grande sucesso do mercado",
     "negócio que todos comentam",
-    "referência no seu setor",
+    "destaque no seu setor",
     "visionário que muda as regras do jogo",
     "nome que ninguém esquece",
     "empreendedor que redefine tendências",
     "fenômeno que inspira milhares",
     "líder de um império global",
     "criador de uma nova categoria de mercado",
-    "loja onde todos querem comprar"
+    "dono da loja onde todos querem comprar"
 ];
 
 let index = 0;
