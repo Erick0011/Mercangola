@@ -390,6 +390,28 @@
     margin: auto;
 }
 
+/* Ajusta a cor dos ícones de navegação */
+/* Garante que os controles tenham um fundo visível */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(216, 87, 42, 0.8); /* Laranja mais escuro com transparência */
+    border-radius: 50%; /* Formato arredondado */
+    width: 50px;
+    height: 50px;
+}
+
+/* Ajusta os botões para ficarem completamente visíveis */
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 1 !important;
+}
+
+/* Muda a cor ao passar o mouse */
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: #F7B538; /* Muda para amarelo quando passa o mouse */
+}
+
 .testimonial-text {
     font-size: 18px;
     font-style: italic;
@@ -429,16 +451,7 @@
     color: #F7B538;
 }
 
-.testimonial-carousel .carousel-control-prev,
-.testimonial-carousel .carousel-control-next {
-    color: #D8572A !important; /* Altere para a cor que desejar */
-    opacity: 1; /* Garante que estejam visíveis */
-}
 
-.testimonial-carousel .carousel-control-prev:hover,
-.testimonial-carousel .carousel-control-next:hover {
-    color: #F7B538 !important; /* Muda a cor ao passar o mouse */
-}
 
 
 .newsletter {
