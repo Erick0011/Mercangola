@@ -229,5 +229,142 @@
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
+/* Estilos exclusivos para a seção de preços */
+.pricing-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8f9fa;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.pricing-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.pricing-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+    max-width: 250px;
+}
+
+.pricing-card h3 {
+    font-size: 22px;
+    color: #333;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #D8572A;
+    margin: 10px 0;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pricing-card ul li {
+    font-size: 16px;
+    color: #555;
+    padding: 5px 0;
+}
+
+.pricing-card ul li i {
+    margin-right: 8px;
+    color: #D8572A;
+}
+
+/* Botões da seção de preços */
+.pricing-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #D8572A;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.pricing-btn i {
+    margin-right: 5px;
+}
+
+.pricing-btn:hover {
+    background: #C32F27;
+}
+
+/* Botão do plano básico */
+.secondary-btn {
+    background: #FFB703;
+    color: #333;
+}
+
+.secondary-btn:hover {
+    background: #E89A02;
+}
+
+/* Botão de teste grátis */
+.test-trial {
+    margin-top: 30px;
+}
+
+.trial-btn {
+    background: #28A745;
+    font-size: 18px;
+}
+
+.trial-btn:hover {
+    background: #218838;
+}
+
+/* Estilo do plano Enterprise */
+.enterprise {
+    background: #780116;
+    color: white;
+}
+
+.enterprise .price {
+    color: white;
+}
+
+.enterprise .pricing-btn {
+    background: white;
+    color: #780116;
+}
+
+.more-details {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.more-details a {
+    color: #D8572A;
+    font-weight: bold;
+}
+
+
 
 
