@@ -1,12 +1,74 @@
+/* Estilos gerais */
 body {
-    background: linear-gradient(135deg, #007bff, #6610f2);
-    color: #333;
+    background-color: #F7B538;
+    font-family: Arial, sans-serif;
 }
 
-.card {
+/* Container do Login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Caixa do Login */
+.login-box {
+    background: #fff;
+    padding: 30px;
     border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
 }
 
-.input-group-text {
-    background-color: #f8f9fa;
+/* Estilos do Form */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #780116;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Botão de Login */
+.btn-login {
+    width: 100%;
+    background-color: #DB7C26;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #D8572A;
+}
+
+/* Estilizando o botão de mostrar senha */
+.input-group .btn-outline-secondary {
+    border: none;
+    background-color: transparent;
+}
+
+.input-group .btn-outline-secondary:hover {
+    background-color: #ddd;
+}
+
+/* Link */
+a {
+    color: #C32F27;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

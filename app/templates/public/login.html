@@ -15,40 +15,49 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/public/login.css') }}">
 </head>
 <body>
+   <!-- Container Centralizado -->
+    <div class="login-container">
+        <div class="login-box">
 
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px;">
+            <!-- Logo -->
             <div class="text-center">
-                <h3 class="mb-3">Bem-vindo ao <strong>Mercangola</strong></h3>
-                <p class="text-muted">Faça login para continuar</p>
+                {% set dynamic_url = url_for('public.home') %}
+                {% include 'includes/logo.html' %}
             </div>
 
-            <form method="POST" action="{{ url_for('public.login') }}">
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
+            <h2 class="text-center">Entrar na Mercangola</h2>
+
+            <!-- Formulário de Login -->
+            <form id="loginForm" method="POST" action="{{ url_for('public.login') }}">
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Digite seu email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Senha</label>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha" required>
+                        <button type="button" class="btn btn-outline-secondary toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="input-group">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Senha">
-                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                        <i class="fa fa-eye"></i>
-                    </button>
-                </div>
-
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Entrar</button>
-                </div>
-
-                <div class="text-center mt-3">
-                    <a href="#">Esqueceu sua senha?</a>
-                </div>
+                <button type="submit" class="btn btn-login">Entrar</button>
             </form>
+
+            <p class="text-center mt-3">
+                <a href="{{ url_for('public.forgot_password') }}">Esqueci minha senha</a>
+            </p>
+
+            <p class="text-center mt-2">
+                Ainda não tem uma conta? <a href="{{ url_for('public.register') }}">Criar conta</a>
+            </p>
+
         </div>
     </div>
+
 
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>

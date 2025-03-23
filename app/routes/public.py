@@ -9,6 +9,13 @@ bp = Blueprint("public", __name__)
 def home():
     return render_template("public/home.html")
 
+@bp.route("/forgot_password")
+def forgot_password():
+    return "Melhor lembrar, Pq na tem função de recuperar"
+
+@bp.route("/register")
+def register():
+    return "Em construção"
 
 @bp.route("/login", methods=["GET", "POST"])
 def login():
