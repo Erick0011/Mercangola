@@ -454,51 +454,7 @@
 
 
 
-.newsletter {
-    text-align: center;
-    padding: 50px 20px;
-    background: #DB7C26;
-    color: white;
-}
 
-.newsletter h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.newsletter p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.newsletter-form {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.newsletter-form input {
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    width: 250px;
-}
-
-.newsletter-form button {
-    background: #F7B538;
-    color: black;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.newsletter-form button:hover {
-    background: #C32F27;
-    color: white;
-}
 
 
 
