@@ -429,6 +429,17 @@
     color: #F7B538;
 }
 
+.testimonial-carousel .carousel-control-prev,
+.testimonial-carousel .carousel-control-next {
+    color: #D8572A !important; /* Altere para a cor que desejar */
+    opacity: 1; /* Garante que estejam visíveis */
+}
+
+.testimonial-carousel .carousel-control-prev:hover,
+.testimonial-carousel .carousel-control-next:hover {
+    color: #F7B538 !important; /* Muda a cor ao passar o mouse */
+}
+
 
 .newsletter {
     text-align: center;
