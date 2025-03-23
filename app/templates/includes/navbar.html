@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            {% set dynamic_url = url_for('public.home') %}
+            {% include 'includes/logo.html' %}
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link underline-effect" href="#">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-warning text-dark" href="#">Criar Loja</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
