@@ -60,3 +60,26 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", fadeInOnScroll);
     fadeInOnScroll();
 });
+
+    document.querySelectorAll('input[name="billing"]').forEach((radio) => {
+        radio.addEventListener('change', function () {
+            let tipo = this.value; // Pega o tipo selecionado (mensal, semestral ou anual)
+
+            document.querySelectorAll('.pricing-card .price').forEach((priceElement) => {
+                let valorMensal = priceElement.getAttribute("data-mensal");
+
+                // Se o plano não tem "data-mensal", significa que é Enterprise e não deve mudar
+                if (!valorMensal) return;
+
+                valorMensal = parseInt(valorMensal);
+
+                if (tipo === "semestral") {
+                    priceElement.textContent = (valorMensal * 0.75).toLocaleString() + " Kz";
+                } else if (tipo === "anual") {
+                    priceElement.textContent = (valorMensal * 0.50).toLocaleString() + " Kz";
+                } else {
+                    priceElement.textContent = valorMensal.toLocaleString() + " Kz";
+                }
+            });
+        });
+    });
