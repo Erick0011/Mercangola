@@ -233,7 +233,7 @@
 .pricing-section {
     text-align: center;
     padding: 60px 20px;
-    background: #f8f9fa;
+    background: #F7B538;
 }
 
 .section-title {
@@ -346,7 +346,12 @@
     color: white;
 }
 
-.enterprise .price {
+.enterprise h3 {
+    color: #FFA500; /* Laranja */
+}
+
+.enterprise .price,
+.enterprise ul li {
     color: white;
 }
 
