@@ -23,11 +23,16 @@ function changeText() {
 
         textElement.classList.remove("fade-out");
         textElement.classList.add("fade-in");
+
+        setTimeout(() => {
+            textElement.classList.remove("fade-in");
+        }, 500); // Remove "fade-in" para permitir a próxima animação
     }, 500);
 }
 
 setInterval(changeText, 3000);
 
+// Navbar transparente ao rolar
 document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.querySelector(".navbar");
 
@@ -40,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Animação de fade-in ao rolar
 document.addEventListener("DOMContentLoaded", function () {
     const fadeElements = document.querySelectorAll(".fade-in");
 
@@ -54,4 +60,3 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", fadeInOnScroll);
     fadeInOnScroll();
 });
-
