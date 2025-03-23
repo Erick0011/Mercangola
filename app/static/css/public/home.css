@@ -238,10 +238,8 @@
     margin-bottom: 20px;
 }
 
-/* Esconde os radio buttons padrão */
-.payment-toggle input {
-    display: none;
-}
+
+
 
 /* Estiliza os labels como botões */
 .payment-toggle label {
@@ -250,7 +248,7 @@
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 20px;
-    background-color: #ddd;
+    background-color: #D8572A;
     color: #333;
     transition: background 0.3s ease, color 0.3s ease;
 }

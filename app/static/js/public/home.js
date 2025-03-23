@@ -74,11 +74,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 valorMensal = parseInt(valorMensal);
 
                 if (tipo === "semestral") {
-                    priceElement.textContent = (valorMensal * 0.75).toLocaleString() + " Kz";
+                    priceElement.textContent = (valorMensal * 0.75).toLocaleString() + " Kz/mês";
                 } else if (tipo === "anual") {
-                    priceElement.textContent = (valorMensal * 0.50).toLocaleString() + " Kz";
+                    priceElement.textContent = (valorMensal * 0.50).toLocaleString() + " Kz/mês";
                 } else {
-                    priceElement.textContent = valorMensal.toLocaleString() + " Kz";
+                    priceElement.textContent = valorMensal.toLocaleString() + " Kz/mês";
                 }
             });
         });
