@@ -1,0 +1,179 @@
+        /* === GERAL === */
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* === SIDEBAR === */
+        .sidebar {
+            width: 260px;
+            height: 94vh;
+            background: #780116;
+            color: white;
+            position: fixed;
+            top: 3vh;
+            left: 20px;
+            border-radius: 20px;
+            padding-top: 20px;
+            transition: width 0.3s ease-in-out;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.2s;
+            border-radius: 10px;
+            margin: 5px 15px;
+            white-space: nowrap;
+        }
+
+        .sidebar a:hover {
+            background: #D8572A;
+        }
+
+        .sidebar i {
+            margin-right: 10px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* === LOGO === */
+        .logo {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .sidebar.collapsed .logo {
+            font-size: 28px;
+        }
+
+        .sidebar.collapsed .logo span {
+            display: none;
+        }
+
+        /* === DROPDOWN === */
+        .dropdown-container {
+            display: none;
+            padding-left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 5px 15px;
+        }
+
+        .dropdown-container a {
+            padding: 10px;
+            font-size: 14px;
+            color: #F7B538;
+            transition: 0.3s;
+        }
+
+        .dropdown-container a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* === COLAPSO DA SIDEBAR === */
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar.collapsed a span {
+            display: none;
+        }
+
+        .sidebar.collapsed .dropdown-container {
+            display: none !important;
+        }
+        /* Centralizar ícones quando a sidebar está colapsada */
+        .sidebar.collapsed a {
+            justify-content: center;
+        }
+
+        .sidebar.collapsed i {
+            margin-right: 0; /* Remove espaçamento extra */
+        }
+
+        /* Fixar os botões no final da sidebar */
+        .sidebar-footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar-footer a {
+            width: 80%;
+            text-align: center;
+            padding: 10px;
+        }
+        /* Esconder setas quando a sidebar está colapsada */
+        .sidebar.collapsed .dropdown-btn i.fa-chevron-down {
+            display: none;
+        }
+
+
+
+        /* === CONTEÚDO PRINCIPAL === */
+        .main-content {
+            margin-left: 290px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+        }
+
+        .collapsed + .main-content {
+            margin-left: 120px;
+        }
+
+        /* === CARDS === */
+        .card-custom {
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-custom i {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* === TABELA === */
+        .table-responsive {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table thead {
+            background: #780116;
+            color: white;
+        }
+
+        .table tbody tr:hover {
+            background: rgba(120, 1, 22, 0.1);
+        }
+        /* === Graficos === */
+        .chart-container {
+            width: 100%;
+            height: 300px; /* Define uma altura fixa */
+        }
+
+        .chart-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
