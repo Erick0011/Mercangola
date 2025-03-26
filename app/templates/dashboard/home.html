@@ -1,216 +1,108 @@
 <h2>Painel do Lojista</h2>
 
-<!-- Cards -->
-<div class="row mt-4">
-    <div class="col-md-4">
-        <div class="card-custom bg-light">
-            <i class="fas fa-money-bill-wave text-success"></i>
-            <h5>Faturamento Total</h5>
-            <p class="fs-3 text-success">KZ 1.500.000</p>
+    <!-- Cards -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card-custom bg-light">
+                <i class="fas fa-money-bill-wave text-success"></i>
+                <h5>Faturamento Total</h5>
+                <p id="faturamentoTotal" class="fs-3 text-success">Carregando...</p>
+            </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card-custom bg-light">
-            <i class="fas fa-shopping-cart text-primary"></i>
-            <h5>Pedidos Hoje</h5>
-            <p class="fs-3 text-primary">12</p>
+        <div class="col-md-4">
+            <div class="card-custom bg-light">
+                <i class="fas fa-shopping-cart text-primary"></i>
+                <h5>Pedidos Hoje</h5>
+                <p id="pedidosHoje" class="fs-3 text-primary">Carregando...</p>
+            </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card-custom bg-light">
-            <i class="fas fa-box text-warning"></i>
-            <h5>Produtos Ativos</h5>
-            <p class="fs-3 text-warning">35</p>
-        </div>
-    </div>
-</div>
-<!-- Gráficos -->
-<div class="row mt-4">
-    <div class="col-md-4">
-        <div class="card card-custom">
-            <div class="card-body">
-                <h5 class="card-title">Faturamento</h5>
-                <div class="chart-container">
-                    <canvas id="faturamentoGrafico"></canvas>
-                </div>
+        <div class="col-md-4">
+            <div class="card-custom bg-light">
+                <i class="fas fa-box text-warning"></i>
+                <h5>Produtos Ativos</h5>
+                <p id="produtosAtivos" class="fs-3 text-warning">Carregando...</p>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="card card-custom">
-            <div class="card-body">
-                <h5 class="card-title">Pedidos</h5>
-                <div class="chart-container">
-                    <canvas id="pedidosGrafico"></canvas>
+
+    <!-- Gráficos -->
+        <!-- Gráficos -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h5 class="card-title">Faturamento</h5>
+                        <div class="chart-container">
+                            <canvas id="faturamentoGrafico"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h5 class="card-title">Pedidos</h5>
+                        <div class="chart-container">
+                            <canvas id="pedidosGrafico"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h5 class="card-title">Categorias</h5>
+                        <div class="chart-container">
+                            <canvas id="categoriasGrafico"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="card card-custom">
-            <div class="card-body">
-                <h5 class="card-title">Categorias</h5>
-                <div class="chart-container">
-                    <canvas id="categoriasGrafico"></canvas>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h5 class="card-title">Crescimento Mensal</h5>
+                        <div class="chart-container">
+                            <canvas id="crescimentoGrafico"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h5 class="card-title">Vendas por Região</h5>
+                        <div class="chart-container">
+                            <canvas id="regioesGrafico"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    <!-- Tabela de Pedidos -->
+    <h3 class="mt-5">Pedidos Recentes</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-pedidos">
+                <!-- Os pedidos serão inseridos aqui pelo JavaScript -->
+            </tbody>
+        </table>
     </div>
-</div>
 
-<div class="row mt-4">
-    <div class="col-md-6">
-        <div class="card card-custom">
-            <div class="card-body">
-                <h5 class="card-title">Crescimento Mensal</h5>
-                <div class="chart-container">
-                    <canvas id="crescimentoGrafico"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="card card-custom">
-            <div class="card-body">
-                <h5 class="card-title">Vendas por Região</h5>
-                <div class="chart-container">
-                    <canvas id="regioesGrafico"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
- <!-- Tabela de Pedidos -->
-<h3 class="mt-5">Pedidos Recentes</h3>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Cliente</th>
-                <th>Valor</th>
-                <th>Status</th>
-                <th>Data</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>#001</td>
-                <td>João Silva</td>
-                <td>KZ 12.500</td>
-                <td><span class="badge bg-success">Concluído</span></td>
-                <td>23/03/2025</td>
-            </tr>
-            <tr>
-                <td>#002</td>
-                <td>Maria Santos</td>
-                <td>KZ 8.200</td>
-                <td><span class="badge bg-warning">Pendente</span></td>
-                <td>23/03/2025</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<script>
-// Definição das cores da paleta
-const mercangolaColors = {
-    primary: "#780116",
-    secondary: "#D8572A",
-    accent: "#FFC107",
-    neutral: "#FFFFFF"
-};
-    // Gráfico de linha - Faturamento
-new Chart(document.getElementById("faturamentoGrafico"), {
-    type: "line",
-    data: {
-        labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
-        datasets: [{
-            label: "Faturamento (KZ)",
-            data: [200000, 180000, 250000, 220000, 300000, 350000, 400000],
-            borderColor: mercangolaColors.primary,
-            backgroundColor: "rgba(120, 1, 22, 0.2)",
-            tension: 0.3,
-            fill: true
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false
-    }
-});
-
-// Gráfico de barras - Pedidos por categoria
-new Chart(document.getElementById("pedidosGrafico"), {
-    type: "bar",
-    data: {
-        labels: ["Eletrônicos", "Roupas", "Alimentos", "Acessórios"],
-        datasets: [{
-            label: "Pedidos",
-            data: [50, 80, 40, 70],
-            backgroundColor: [mercangolaColors.primary, mercangolaColors.secondary, mercangolaColors.accent, "#8B0000"]
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false
-    }
-});
-
-// Gráfico de pizza - Distribuição de produtos
-new Chart(document.getElementById("categoriasGrafico"), {
-    type: "pie",
-    data: {
-        labels: ["Smartphones", "Notebooks", "Fones", "Outros"],
-        datasets: [{
-            label: "Produtos",
-            data: [40, 30, 20, 10],
-            backgroundColor: [mercangolaColors.primary, mercangolaColors.secondary, mercangolaColors.accent, "#8B0000"]
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false
-    }
-});
-// Gráfico de Linha - Crescimento Mensal
-new Chart(document.getElementById("crescimentoGrafico"), {
-type: "line",
-data: {
-    labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
-    datasets: [{
-        label: "Crescimento (%)",
-        data: [5, 7, 12, 15, 20, 25, 30, 35, 40, 45, 50, 55],
-        borderColor: mercangolaColors.secondary,
-        backgroundColor: "rgba(216, 87, 42, 0.2)",
-        tension: 0.3,
-        fill: true
-    }]
-},
-options: {
-    responsive: true,
-    maintainAspectRatio: false
-}
-});
-
-//Gráfico de Barras - Vendas por Região (Angola)
-new Chart(document.getElementById("regioesGrafico"), {
-type: "bar",
-data: {
-    labels: ["Luanda", "Benguela", "Huíla", "Huambo", "Cabinda"],
-    datasets: [{
-        label: "Vendas (KZ)",
-        data: [50000, 30000, 20000, 15000, 10000],
-        backgroundColor: [mercangolaColors.primary, mercangolaColors.secondary, mercangolaColors.accent, "#8B0000", "#4BC0C0"]
-    }]
-},
-options: {
-    responsive: true,
-    maintainAspectRatio: false
-}
-});
-</script>
+    <script src="{{ url_for('static', filename='js/dashboard/home.js') }}"></script>
