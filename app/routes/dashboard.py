@@ -19,7 +19,8 @@ def get_data():
         "produtos_ativos": 35,
         "pedidos": [
             {"id": "#001", "cliente": "João Silva", "valor": "KZ 12.500", "status": "Concluído", "data": "23/03/2025"},
-            {"id": "#002", "cliente": "Maria Santos", "valor": "KZ 8.200", "status": "Pendente", "data": "23/03/2025"}
+            {"id": "#002", "cliente": "Maria Santos", "valor": "KZ 8.200", "status": "Pendente", "data": "23/03/2025"},
+            {"id": "#003", "cliente": "Débora Tchissola", "valor": "KZ 19.200", "status": "Pendente", "data": "25/03/2025"}
         ],
         "grafico_faturamento": [200000, 180000, 250000, 220000, 300000, 350000, 400000],
         "grafico_pedidos": [50, 80, 40, 70],
