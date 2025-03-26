@@ -73,7 +73,7 @@
 
         <div class="sidebar-footer">
             <a href="#" class="text-light"><i class="fas fa-question-circle"></i> <span>Ajuda</span></a>
-            <a href="#" class="text-danger"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            <a href="{{ url_for('public.logout') }}" class="text-danger"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
         </div>
     </div>
 
@@ -227,7 +227,7 @@
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
     <!-- js puro -->
-    <script src="{{ url_for('static', filename='js/dashboard/base_dashboard.js) }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard/base_dashboard.js') }}"></script>
     <!-- Bootstrap JS -->
     <script src="{{ url_for('static', filename='vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
 </body>

@@ -26,7 +26,7 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user and user.check_password(password):
             return login_user_service(user)
-
+        print('Algo errado')
         flash("Credenciais inválidas!", "error")
 
     return render_template("public/login.html")
