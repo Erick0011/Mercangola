@@ -10,8 +10,10 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
 
-    # Função para carregar o usuário pelo ID
+    # Importa os modelos
     from app.models.user import User
+    from app.models.store import Store
+    # Função para carregar o usuário pelo ID
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))

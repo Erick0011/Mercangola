@@ -1,5 +1,6 @@
 from app.extensions import db
 from datetime import datetime, timezone
+from app.models.user import User
 from enum import Enum
 
 
