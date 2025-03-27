@@ -38,7 +38,7 @@ def create_store_owner(form):
             name=form.store_name.data,
             description=form.description.data,
             phone=form.phone.data,
-            email=form.email.data,
+            email=form.email_store.data,
             website=form.website.data,
             address=form.address.data,
             city=form.city.data,

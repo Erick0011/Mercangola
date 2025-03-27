@@ -18,7 +18,7 @@ class StoreOwnerRegistrationForm(FlaskForm):
 
     # Contato da loja
     phone = StringField("Telefone da Loja", validators=[Optional(), Length(min=9, max=20)])
-    email = StringField("Email da Loja", validators=[Optional(), Email()])
+    email_store = StringField("Email da Loja", validators=[Optional(), Email()])
     website = StringField("Website", validators=[Optional(), URL()])
 
     # Endereço da loja
