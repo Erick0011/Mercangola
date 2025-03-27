@@ -9,7 +9,7 @@ class UserRole(Enum):
     STORE_OWNER = "store_owner"
     CLIENT = "client"
 
-class User(db.Model, UserMixin):  # Agora herda de UserMixin
+class User(db.Model, UserMixin):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
