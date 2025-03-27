@@ -27,9 +27,9 @@ def register_store_owner():
     if form.validate_on_submit():
         user, store = create_store_owner(form)
         if user and store:
-            return redirect(url_for("dashboard.index"))  # Redireciona para outro Blueprint
+            return redirect(url_for("dashboard.dashboard_home"))
 
-    return render_template("help/register_store_owner.html", form=form)
+    return render_template("public/register_store_owner.html", form=form)
 
 @bp.route("/login", methods=["GET", "POST"])
 def login():
