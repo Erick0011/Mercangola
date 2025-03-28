@@ -8,5 +8,4 @@ WTForms~=3.2.1
 flask_wtf
 email_validator
 
-
 pytz~=2025.2
