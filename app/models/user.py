@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from app.services import get_local_time
 from app.extensions import db
 from enum import Enum
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -19,8 +19,8 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(100), nullable=False)
     telefone = db.Column(db.String(20), nullable=True)
     is_active = db.Column(db.Boolean, default=True)
-    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = db.Column(db.DateTime, onupdate=lambda: datetime.now(timezone.utc))
+    created_at = db.Column(db.DateTime, default=get_local_time())
+    updated_at = db.Column(db.DateTime, onupdate=get_local_time())
 
     def set_password(self, password):
         """Gera hash da senha"""
