@@ -1,8 +1,7 @@
+from app.models import Store, StorePlan, User, UserRole
 from datetime import datetime, timedelta, timezone
 from flask import flash
 from app.extensions import db
-from app.models.user import User, UserRole
-from app.models.store import Store, StorePlan
 from werkzeug.security import generate_password_hash
 
 
