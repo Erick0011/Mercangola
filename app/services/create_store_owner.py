@@ -1,7 +1,8 @@
 from app.models import Store, StorePlan, User, UserRole
 from datetime import datetime, timedelta, timezone
-from flask import flash
 from app.extensions import db
+from app.services import get_local_time
+from flask import flash
 
 
 def create_store_owner(form):
@@ -52,7 +53,7 @@ def create_store_owner(form):
             # 7 dias grátis no plano básico
             plan=StorePlan.BASIC,
             subscription_fee=0.0,
-            expiration_date=datetime.now(timezone.utc) + timedelta(days=7),
+            expiration_date=get_local_time() + timedelta(days=7),
 
             store_type=form.store_type.data,
         )
