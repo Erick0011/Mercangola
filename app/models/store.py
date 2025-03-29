@@ -1,5 +1,5 @@
 from app.extensions import db
-from app.services.utils import get_local_time
+from app.services import get_local_time
 from enum import Enum
 
 
