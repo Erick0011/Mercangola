@@ -1,9 +1,8 @@
+from app.services import login_user_service, StoreOwnerRegistrationForm, create_store_owner
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import logout_user
-from app.models.user import User
-from app.services.auth import login_user_service
-from app.services.form_StoreOwnerRegistration import StoreOwnerRegistrationForm
-from app.services.create_store_owner import create_store_owner
+from app.models import User
+
 
 bp = Blueprint("public", __name__)
 
