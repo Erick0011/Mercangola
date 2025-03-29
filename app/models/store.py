@@ -1,6 +1,5 @@
 from app.extensions import db
-from datetime import datetime, timezone
-from app.models.user import User
+from app.services.utils import get_local_time
 from enum import Enum
 
 
@@ -55,8 +54,8 @@ class Store(db.Model):
     store_type = db.Column(db.Enum(StoreType), default=StoreType.BOTH, nullable=False)
 
     # Controle
-    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = db.Column(db.DateTime, onupdate=lambda: datetime.now(timezone.utc))
+    created_at = db.Column(db.DateTime, default=get_local_time)
+    updated_at = db.Column(db.DateTime, onupdate=get_local_time)
     is_active = db.Column(db.Boolean, default=True)
 
     # Relacionamento com o usuário
@@ -64,7 +63,7 @@ class Store(db.Model):
 
     def check_expiration(self):
         """Atualiza o status da loja se a assinatura expirou."""
-        if self.expiration_date < datetime.now(timezone.utc):
+        if self.expiration_date < get_local_time:
             self.is_active = False
 
     def __repr__(self):
