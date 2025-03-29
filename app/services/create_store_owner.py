@@ -1,11 +1,11 @@
-from app.models import Store, StorePlan, User, UserRole
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 from app.extensions import db
 from app.services import get_local_time
 from flask import flash
 
 
 def create_store_owner(form):
+    from app.models import Store, StorePlan, User, UserRole
     """
     Cria um novo usuário do tipo STORE_OWNER e sua loja correspondente.
 

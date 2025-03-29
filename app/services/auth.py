@@ -1,9 +1,10 @@
 from flask import redirect, url_for, request
 from flask_login import login_user, current_user
 from functools import wraps
-from app.models.user import UserRole
+
 
 def login_user_service(user, remember=False):
+    from app.models.user import UserRole
     """Autentica o usuário e redireciona com base na role"""
     login_user(user, remember=remember)
 
