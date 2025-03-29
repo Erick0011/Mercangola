@@ -2,7 +2,6 @@ from app.models import Store, StorePlan, User, UserRole
 from datetime import datetime, timedelta, timezone
 from flask import flash
 from app.extensions import db
-from werkzeug.security import generate_password_hash
 
 
 def create_store_owner(form):
