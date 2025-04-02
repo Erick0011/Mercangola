@@ -2,49 +2,190 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registro de Loja | Mercangola</title>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Leaflet.js para o mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        /* Cores principais */
+        :root {
+            --primary-color: #D8572A ;
+            --secondary-color: #F7B538;
+            --accent-color: #D8572A;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 6px solid var(--primary-color);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        #map {
+            height: 300px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
 </head>
 <body>
-    <h2>Registro de Store Owner</h2>
+
+<div class="container mt-5">
+    <h2><i class="fas fa-store"></i> Registro de Store Owner</h2>
+
     <form method="POST">
         {{ form.hidden_tag() }}
 
-        <h3>Dados do Usuário</h3>
-        <label>{{ form.name.label }}</label> {{ form.name() }}
-        <label>{{ form.email.label }}</label> {{ form.email() }}
-        <label>{{ form.telefone.label }}</label> {{ form.telefone() }}
-        <label>{{ form.password.label }}</label> {{ form.password() }}
-        <label>{{ form.confirm_password.label }}</label> {{ form.confirm_password() }}
+        <!-- Dados do Usuário -->
+        <div class="card">
+            <h3><i class="fas fa-user"></i> Dados do Usuário</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>{{ form.name.label }}</label> {{ form.name(class="form-control") }}
+                </div>
+                <div class="col-md-6">
+                    <label>{{ form.email.label }}</label> {{ form.email(class="form-control") }}
+                </div>
+                <div class="col-md-6">
+                    <label>{{ form.telefone.label }}</label> {{ form.telefone(class="form-control") }}
+                </div>
+                <div class="col-md-6">
+                    <label>{{ form.password.label }}</label> {{ form.password(class="form-control") }}
+                </div>
+                <div class="col-md-6">
+                    <label>{{ form.confirm_password.label }}</label> {{ form.confirm_password(class="form-control") }}
+                </div>
+            </div>
+        </div>
 
-        <h3>Dados da Loja</h3>
-        <label>{{ form.store_name.label }}</label> {{ form.store_name() }}
-        <label>{{ form.slug.label }}</label> {{ form.slug() }}
-        <label>{{ form.description.label }}</label> {{ form.description() }}
+        <!-- Dados da Loja -->
+        <div class="card">
+            <h3><i class="fas fa-store"></i> Dados da Loja</h3>
+            <label>{{ form.store_name.label }}</label> {{ form.store_name(class="form-control") }}
+            <label>{{ form.slug.label }}</label> {{ form.slug(class="form-control") }}
+            <label>{{ form.description.label }}</label> {{ form.description(class="form-control") }}
+        </div>
 
-        <h3>Contato</h3>
-        <label>{{ form.phone.label }}</label> {{ form.phone() }}
-        <label>{{ form.email_store.label }}</label> {{ form.email_store() }}
-        <label>{{ form.website.label }}</label> {{ form.website() }}
+        <!-- Contato -->
+        <div class="card">
+            <h3><i class="fas fa-envelope"></i> Contato</h3>
+            <label>{{ form.phone.label }}</label> {{ form.phone(class="form-control") }}
+            <label>{{ form.email_store.label }}</label> {{ form.email_store(class="form-control") }}
+            <label>{{ form.website.label }}</label> {{ form.website(class="form-control") }}
+        </div>
 
-        <h3>Endereço</h3>
-        <label>{{ form.address.label }}</label> {{ form.address() }}
-        <label>{{ form.city.label }}</label> {{ form.city() }}
-        <label>{{ form.state.label }}</label> {{ form.state() }}
-        <label>{{ form.country.label }}</label> {{ form.country() }}
-        <label>{{ form.latitude.label }}</label> {{ form.latitude() }}
-        <label>{{ form.longitude.label }}</label> {{ form.longitude() }}
+        <!-- Endereço -->
+        <div class="card">
+            <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
+            <label>{{ form.address.label }}</label> {{ form.address(class="form-control") }}
+            <label>{{ form.city.label }}</label> {{ form.city(class="form-control") }}
+            <label>{{ form.state.label }}</label> {{ form.state(class="form-control") }}
+            <label>{{ form.country.label }}</label> {{ form.country(class="form-control") }}
 
-        <h3>Redes Sociais</h3>
-        <label>{{ form.facebook.label }}</label> {{ form.facebook() }}
-        <label>{{ form.instagram.label }}</label> {{ form.instagram() }}
-        <label>{{ form.twitter.label }}</label> {{ form.twitter() }}
-        <label>{{ form.whatsapp.label }}</label> {{ form.whatsapp() }}
+            <h5 class="mt-3">Selecione a Localização</h5>
+            <div id="map"></div>
+            <input type="hidden" name="latitude" id="latitude">
+            <input type="hidden" name="longitude" id="longitude">
+        </div>
 
-        <h3>Tipo de Loja</h3>
-        <label>{{ form.store_type.label }}</label> {{ form.store_type() }}
+        <!-- Redes Sociais -->
+        <div class="card">
+            <h3><i class="fas fa-share-alt"></i> Redes Sociais</h3>
+            <label>{{ form.facebook.label }}</label> {{ form.facebook(class="form-control") }}
+            <label>{{ form.instagram.label }}</label> {{ form.instagram(class="form-control") }}
+            <label>{{ form.twitter.label }}</label> {{ form.twitter(class="form-control") }}
+            <label>{{ form.whatsapp.label }}</label> {{ form.whatsapp(class="form-control") }}
+        </div>
 
-        <br>
-        <button type="submit">Registrar Loja</button>
+        <!-- Tipo de Loja -->
+        <div class="card">
+            <h3><i class="fas fa-tag"></i> Tipo de Loja</h3>
+            <label>{{ form.store_type.label }}</label> {{ form.store_type(class="form-control") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100"><i class="fas fa-check"></i> Registrar Loja</button>
     </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Leaflet.js para o mapa -->
+<script>
+    var map = L.map('map').setView([-8.839988, 13.289437], 12); // Posição inicial em Luanda
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var marker;
+    map.on('click', function(e) {
+        if (marker) {
+            map.removeLayer(marker);
+        }
+        marker = L.marker(e.latlng).addTo(map);
+        document.getElementById("latitude").value = e.latlng.lat;
+        document.getElementById("longitude").value = e.latlng.lng;
+    });
+</script>
+
 </body>
 </html>
