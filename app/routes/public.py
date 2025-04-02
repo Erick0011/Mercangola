@@ -1,8 +1,9 @@
 from app.services import login_user_service, StoreOwnerRegistrationForm, create_store_owner
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import logout_user
 from app.models import User
-
+import json
+import os
 
 bp = Blueprint("public", __name__)
 
@@ -43,6 +44,20 @@ def login():
         flash("Credenciais inválidas!", "error")
 
     return render_template("public/login.html")
+
+@bp.route('/get-angola_data', methods=['GET'])
+def get_angola_data():
+    json_path = os.path.join(os.getcwd(), "app", "static", "vendor", "json_files", "angola_data.json")
+
+    if not os.path.exists(json_path):
+        return jsonify({"error": "Arquivo JSON não encontrado"}), 500
+
+    try:
+        with open(json_path, "r", encoding="utf-8") as file:
+            angola_data = json.load(file)
+        return jsonify(angola_data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @bp.route("/logout")
 def logout():
