@@ -150,9 +150,9 @@
             <label>País</label>
             <input type="text" class="form-control" value="Angola" readonly>
 
-            <label>Estado/Província</label>
-            <select id="state" name="state" class="form-control" disabled>
-                <option value="">Selecione um estado</option>
+            <label>Província</label>
+            <select id="state" name="state" class="form-control" >
+                <option value="">Selecione uma província</option>
             </select>
 
             <label>Cidade</label>
@@ -240,18 +240,18 @@ $(document).ready(function() {
     $.getJSON('/get-angola_data', function(angolaData) {
         console.log(angolaData);  // Verifique se os dados estão chegando
 
-        // Preencher as províncias de Angola ao carregar a página
+        // Preencher as províncias de Angola automaticamente
         $('#state').html('<option value="">Selecione uma província</option>');
         angolaData.provincias.forEach(function(provincia) {
             $('#state').append(`<option value="${provincia.nome}">${provincia.nome}</option>`);
         });
 
-        // Quando a província é alterada, carregar os municípios
+        // Quando a província é alterada
         $('#state').change(function() {
             const provinciaSelecionada = $(this).val();
-            $('#city').html('<option value="">Selecione um município</option>');
+            $('#city').prop('disabled', false).html('<option value="">Selecione um município</option>');
 
-            // Encontrar a província e preencher os municípios
+            // Encontrar a província selecionada e preencher os municípios
             const provincia = angolaData.provincias.find(p => p.nome === provinciaSelecionada);
             if (provincia) {
                 provincia.municipios.forEach(function(municipio) {
@@ -259,12 +259,19 @@ $(document).ready(function() {
                 });
             }
         });
+        // Quando o município é alterado, habilita o campo "Endereço"
+        $('#city').change(function() {
+            if ($(this).val()) {
+                $('#address').prop('disabled', false);
+            } else {
+                $('#address').prop('disabled', true).val('');
+            }
+        });
 
     }).fail(function() {
         alert("Erro ao carregar os dados de Angola.");
     });
 });
-
 </script>
 
 
