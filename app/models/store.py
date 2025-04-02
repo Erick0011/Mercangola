@@ -37,7 +37,7 @@ class Store(db.Model):
     # Redes Sociais
     facebook = db.Column(db.String(255), nullable=True)
     instagram = db.Column(db.String(255), nullable=True)
-    twitter = db.Column(db.String(255), nullable=True)
+    tiktok = db.Column(db.String(255), nullable=True)
     whatsapp = db.Column(db.String(20), nullable=True)
 
     # Plano da Loja

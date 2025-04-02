@@ -32,7 +32,7 @@ class StoreOwnerRegistrationForm(FlaskForm):
     # Redes sociais
     facebook = StringField("Facebook", validators=[Optional(), URL()])
     instagram = StringField("Instagram", validators=[Optional(), URL()])
-    twitter = StringField("Twitter", validators=[Optional(), URL()])
+    tiktok = StringField("Tiktok", validators=[Optional(), URL()])
 
 
 

@@ -47,7 +47,7 @@ def create_store_owner(form):
             longitude=form.longitude.data,
             facebook=form.facebook.data,
             instagram=form.instagram.data,
-            twitter=form.twitter.data,
+            tiktok=form.tiktok.data,
 
             # 7 dias grátis no plano básico
             plan=StorePlan.BASIC,
