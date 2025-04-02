@@ -54,7 +54,7 @@ def create_store_owner(form):
             subscription_fee=0.0,
             expiration_date=get_local_time() + timedelta(days=7),
 
-            store_type=form.store_type.data,
+
         )
 
         db.session.add(store)

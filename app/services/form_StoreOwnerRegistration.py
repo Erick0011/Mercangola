@@ -35,7 +35,5 @@ class StoreOwnerRegistrationForm(FlaskForm):
     twitter = StringField("Twitter", validators=[Optional(), URL()])
 
 
-    # Tipo de loja
-    store_type = SelectField("Tipo de Loja", choices=[(t.value, t.name) for t in StoreType], validators=[DataRequired()])
 
     submit = SubmitField("Registrar Loja")
