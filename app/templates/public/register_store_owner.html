@@ -148,12 +148,7 @@
             <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
 
             <label>País</label>
-            <select id="country" name="country" class="form-control">
-                <option value="">Selecione um país</option>
-                <option value="Angola">Angola</option>
-                <option value="Estrangeiro">Outro País</option>
-                <!-- Adicione outros países conforme necessário -->
-            </select>
+            <input type="text" class="form-control" value="Angola" readonly>
 
             <label>Estado/Província</label>
             <select id="state" name="state" class="form-control" disabled>
@@ -245,58 +240,31 @@ $(document).ready(function() {
     $.getJSON('/get-angola_data', function(angolaData) {
         console.log(angolaData);  // Verifique se os dados estão chegando
 
-        // Quando o país é alterado
-        $('#country').change(function() {
-            const country = $(this).val();
-
-            // Resetar e habilitar/desabilitar campos
-            $('#state, #city, #address').val('').prop('disabled', true);
-
-            if (country === 'Angola') {
-                $('#state').prop('disabled', false).html('<option value="">Selecione uma província</option>');
-
-                // Preencher as províncias de Angola
-                angolaData.provincias.forEach(function(provincia) {
-                    $('#state').append(`<option value="${provincia.nome}">${provincia.nome}</option>`);
-                });
-
-                // Habilitar endereço
-                $('#address').prop('disabled', false);
-            }
-            else if (country === 'Estrangeiro') {
-                // Para estrangeiros, mostrar apenas cidade e endereço
-                $('#city').prop('disabled', false).html('<option value="">Selecione uma cidade</option>');
-                $('#address').prop('disabled', false);
-
-                // Esconder estado/província ou definir como genérico
-                $('#state').prop('disabled', true).html('<option value="N/A">Não aplicável</option>');
-            }
+        // Preencher as províncias de Angola ao carregar a página
+        $('#state').html('<option value="">Selecione uma província</option>');
+        angolaData.provincias.forEach(function(provincia) {
+            $('#state').append(`<option value="${provincia.nome}">${provincia.nome}</option>`);
         });
 
-        // Quando a província é alterada (apenas para Angola)
+        // Quando a província é alterada, carregar os municípios
         $('#state').change(function() {
-            if ($('#country').val() === 'Angola') {
-                const provinciaSelecionada = $(this).val();
-                $('#city').prop('disabled', false).html('<option value="">Selecione um município</option>');
+            const provinciaSelecionada = $(this).val();
+            $('#city').html('<option value="">Selecione um município</option>');
 
-                // Encontrar a província selecionada e preencher os municípios
-                const provincia = angolaData.provincias.find(p => p.nome === provinciaSelecionada);
-                if (provincia) {
-                    provincia.municipios.forEach(function(municipio) {
-                        $('#city').append(`<option value="${municipio}">${municipio}</option>`);
-                    });
-                }
+            // Encontrar a província e preencher os municípios
+            const provincia = angolaData.provincias.find(p => p.nome === provinciaSelecionada);
+            if (provincia) {
+                provincia.municipios.forEach(function(municipio) {
+                    $('#city').append(`<option value="${municipio}">${municipio}</option>`);
+                });
             }
         });
 
-        // Validação básica para habilitar/desabilitar campos
-        $('form').on('change', '#country, #state, #city', function() {
-            // Lógica adicional de validação pode ser adicionada aqui
-        });
     }).fail(function() {
         alert("Erro ao carregar os dados de Angola.");
     });
 });
+
 </script>
 
 

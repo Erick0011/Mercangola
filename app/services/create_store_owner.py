@@ -48,7 +48,6 @@ def create_store_owner(form):
             facebook=form.facebook.data,
             instagram=form.instagram.data,
             twitter=form.twitter.data,
-            whatsapp=form.whatsapp.data,
 
             # 7 dias grátis no plano básico
             plan=StorePlan.BASIC,
