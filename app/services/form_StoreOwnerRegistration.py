@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField, FloatField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional, URL
-from app.models.store import StorePlan, StoreType  # Importando os enums existentes
+
 
 class StoreOwnerRegistrationForm(FlaskForm):
     # Campos do usuário (User)

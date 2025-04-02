@@ -10,11 +10,6 @@ class StorePlan(Enum):
     ADVANCED = "advanced"
     ENTERPRISE = "enterprise"
 
-# Enum para o tipo de loja
-class StoreType(Enum):
-    PHYSICAL = "physical"
-    DIGITAL = "digital"
-    BOTH = "both"
 
 class Store(db.Model):
     __tablename__ = 'stores'
@@ -49,9 +44,6 @@ class Store(db.Model):
     plan = db.Column(db.Enum(StorePlan), default=StorePlan.BASIC, nullable=False)
     subscription_fee = db.Column(db.Float, default=0.0, nullable=False)  # Mensalidade do plano escolhido
     expiration_date = db.Column(db.DateTime, nullable=False)  # Data de expiração do plano
-
-    # Tipo de Loja (Produtos físicos, digitais ou ambos)
-    store_type = db.Column(db.Enum(StoreType), default=StoreType.BOTH, nullable=False)
 
     # Controle
     created_at = db.Column(db.DateTime, default=get_local_time)
