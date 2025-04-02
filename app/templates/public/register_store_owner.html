@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
+    <!-- Intl-Tel-Input (Para adicionar código de país) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
     <style>
         /* Cores principais */
         :root {
@@ -85,6 +90,10 @@
         .btn-primary:hover {
             background-color: var(--accent-color);
         }
+        label {
+            display: block; /* Faz o label ocupar toda a linha */
+            margin-bottom: 5px; /* Adiciona um pequeno espaço entre label e input */
+        }
     </style>
 </head>
 <body>
@@ -106,7 +115,8 @@
                     <label>{{ form.email.label }}</label> {{ form.email(class="form-control") }}
                 </div>
                 <div class="col-md-6">
-                    <label>{{ form.telefone.label }}</label> {{ form.telefone(class="form-control") }}
+                    <label>{{ form.telefone.label }}</label>
+                    <input type="tel" id="telefone" name="telefone" class="form-control">
                 </div>
                 <div class="col-md-6">
                     <label>{{ form.password.label }}</label> {{ form.password(class="form-control") }}
@@ -128,7 +138,8 @@
         <!-- Contato -->
         <div class="card">
             <h3><i class="fas fa-envelope"></i> Contato</h3>
-            <label>{{ form.phone.label }}</label> {{ form.phone(class="form-control") }}
+            <label>{{ form.phone.label }}</label>
+            <input type="tel" id="phone" name="phone" class="form-control">
             <label>{{ form.email_store.label }}</label> {{ form.email_store(class="form-control") }}
             <label>{{ form.website.label }}</label> {{ form.website(class="form-control") }}
         </div>
@@ -168,6 +179,30 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Intl-Tel-Input para selecionar código de país -->
+<script>
+    var inputTelefone = document.querySelector("#telefone");
+    var inputPhone = document.querySelector("#phone");
+
+    var itiTelefone = intlTelInput(inputTelefone, {
+        initialCountry: "ao",  // Define Angola como padrão
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    var itiPhone = intlTelInput(inputPhone, {
+        initialCountry: "ao",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    // Captura o telefone formatado ao submeter o formulário
+    document.querySelector("form").addEventListener("submit", function() {
+        inputTelefone.value = itiTelefone.getNumber();
+        inputPhone.value = itiPhone.getNumber();
+    });
+</script>
 
 <!-- Leaflet.js para o mapa -->
 <script>
