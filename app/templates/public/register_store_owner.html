@@ -129,8 +129,11 @@
         <!-- Dados da Loja -->
         <div class="card">
             <h3><i class="fas fa-store"></i> Dados da Loja</h3>
-            <label>{{ form.store_name.label }}</label> {{ form.store_name(class="form-control") }}
-            <label>{{ form.slug.label }}</label> {{ form.slug(class="form-control") }}
+                <label>{{ form.store_name.label }}</label>
+                {{ form.store_name(class="form-control", id="store_name") }}
+
+                <label>{{ form.slug.label }}</label>
+                {{ form.slug(class="form-control", id="slug") }}
             <label>{{ form.description.label }}</label> {{ form.description(class="form-control") }}
         </div>
 
@@ -272,6 +275,26 @@ $(document).ready(function() {
         alert("Erro ao carregar os dados de Angola.");
     });
 });
+</script>
+<script>
+    $(document).ready(function() {
+        // Função para gerar o slug
+        function generateSlug(text) {
+            return text
+                .toLowerCase() // converte para minúsculas
+                .replace(/[^a-z0-9\s-]/g, '') // remove caracteres especiais
+                .replace(/\s+/g, '-') // substitui espaços por hífens
+                .replace(/-+/g, '-'); // remove hífens extras
+        }
+
+        // Ao digitar no campo de nome da loja
+        $('#store_name').on('input', function() {
+            const storeName = $(this).val(); // Obtém o nome da loja digitado
+            const slug = generateSlug(storeName); // Gera o slug
+            $('#slug').val(slug); // Preenche o campo slug com o valor gerado
+        });
+    });
+
 </script>
 
 
