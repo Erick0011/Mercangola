@@ -18,7 +18,7 @@ def store_home(tenant):
     ]
 
     produtos = [
-        {"id": 1, "nome": "Fone Bluetooth", "preco": 12000, "imagem_url": url_for('static', filename='images/placeholder-images-image_large.webp')
+        {"id": 1, "nome": "Fone Bluetooth", "preco": 12000, "imagem_url": url_for('static', filename='images/produto (1).avif')
         },
         { "id": 2, "nome": "Camisa Estilosa", "preco": 6500, "imagem_url": url_for('static', filename='images/placeholder-images-image_large.webp')
         },
@@ -27,10 +27,15 @@ def store_home(tenant):
         {"id": 4, "nome": "Livro JavaScript", "preco": 7200, "imagem_url": url_for('static', filename='images/placeholder-images-image_large.webp')
         },
     ]
+
+    produtos_destaque = [produto for produto in produtos if produto['id'] in [1, 2]]
+
     loja_nome = tenant
     cor_principal = "#FFD700"   # Amarelo
     cor_secundaria = "#FF4500"  # Laranja
-    cor_botao = "#DC3545"       # Vermelho
+    cor_botao = "#FF6347"       # usado no hover do botaoVermelho
+    cor_texto = "#1A1A1A"       # Branco
+
 
     return render_template(
         "store/pages/home.html",
@@ -38,8 +43,10 @@ def store_home(tenant):
         cor_principal=cor_principal,
         cor_secundaria=cor_secundaria,
         cor_botao=cor_botao,
+        cor_texto=cor_texto,
         categorias=categorias,
-        produtos=produtos
+        produtos=produtos,
+        produtos_destaque=produtos_destaque
     )
 
 @bp.route("/<string:tenant>/products")

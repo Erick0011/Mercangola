@@ -14,8 +14,8 @@
             --cor-principal: {{ cor_principal }};
             --cor-secundaria: {{ cor_secundaria }};
             --cor-botao: {{ cor_botao }};
+            --cor-texto: {{ cor_texto }};
         }
-
         .navbar-custom {
             background-color: var(--cor-principal) !important;
             border-radius: 40px;
@@ -25,7 +25,7 @@
 
         .navbar-custom .nav-link,
         .navbar-custom .navbar-brand {
-            color: white !important;
+            color: var(--cor-texto) !important;
         }
 
         .navbar-custom .nav-link:hover {
@@ -34,7 +34,7 @@
 
         .btn-custom {
             background-color: var(--cor-botao);
-            color: white;
+            color: var(--cor-texto);
             border-radius: 999px;
         }
 
