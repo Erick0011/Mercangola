@@ -198,28 +198,23 @@
   </div>
 </div>
 <!-- Produtos-->
-<section class="produtos-section" style="padding: 40px;">
+<section class="produtos-section">
   <h2 style="color: var(--cor-texto); text-align: center; font-size: 2rem; margin-bottom: 30px;">Produtos</h2>
 
   <div class="produtos-grid">
     {% for produto in produtos %}
-      <div class="produto-card">
+      <a href="/produto/{{ produto.id }}" class="produto-card">
         <img src="{{ produto.imagem_url }}" alt="{{ produto.nome }}" class="produto-img">
         <div class="produto-info">
-          <h5 class="produto-nome">{{ produto.nome }}</h5>
-          <p class="produto-preco">Kz {{ produto.preco }}</p>
-          <a href="{{ produto.imagem_url }}" target="_blank" class="produto-btn">Ver Foto</a>
+          <span class="produto-nome">{{ produto.nome }}</span>
+          <span class="produto-preco">Kz {{ produto.preco }}</span>
         </div>
-      </div>
+      </a>
     {% endfor %}
   </div>
 
-  <!-- Estilos somente para esta seção -->
+  <!-- CSS isolado da seção -->
   <style>
-    .produtos-section {
-      background-color: var(--cor-principal);
-    }
-
     .produtos-grid {
       display: flex;
       flex-wrap: wrap;
@@ -228,16 +223,18 @@
     }
 
     .produto-card {
-      background-color: var(--cor-secundaria);
-      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
       width: 230px;
+      border: 2px solid var(--cor-principal);
+      border-radius: 12px;
       overflow: hidden;
+      text-decoration: none;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .produto-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
@@ -248,35 +245,29 @@
     }
 
     .produto-info {
-      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      background-color: #fff;
       color: var(--cor-texto);
-      text-align: center;
     }
 
     .produto-nome {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      flex: 1;
     }
 
     .produto-preco {
-      color: var(--cor-botao);
+      font-size: 0.95rem;
       font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .produto-btn {
-      display: inline-block;
-      background-color: var(--cor-botao);
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-    }
-
-    .produto-btn:hover {
-      background-color: #333;
+      color: var(--cor-botao);
+      margin-left: 10px;
+      white-space: nowrap;
     }
   </style>
+</section>
+
 </section>
 {% endblock %}
