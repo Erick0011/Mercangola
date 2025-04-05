@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, url_for
 from flask_login import current_user, login_required
 from app.services.auth import role_required
 from app.models.user import UserRole
@@ -8,18 +8,38 @@ bp = Blueprint("store", __name__)
 
 @bp.route("/<string:tenant>/")
 def store_home(tenant):
+    categorias = [
+        {"nome": "Eletrônicos", "icon": "tv"},
+        {"nome": "Roupas", "icon": "tshirt"},
+        {"nome": "Alimentos", "icon": "apple-alt"},
+        {"nome": "Eletrônicos", "icon": "tv"},
+        {"nome": "Roupas 2", "icon": "tshirt"},
 
+    ]
+
+    produtos = [
+        {"id": 1, "nome": "Fone Bluetooth", "preco": 12000, "imagem_url": url_for('static', filename='images/placeholder-images-image_large.webp')
+        },
+        { "id": 2, "nome": "Camisa Estilosa", "preco": 6500, "imagem_url": url_for('static', filename='images/placeholder-images-image_large.webp')
+        },
+        {"id": 3, "nome": "Liquidificador", "preco": 18000, "imagem_url": url_for('static', filename='images/placeholder-images-image_large.webp')
+        },
+        {"id": 4, "nome": "Livro JavaScript", "preco": 7200, "imagem_url": url_for('static', filename='images/placeholder-images-image_large.webp')
+        },
+    ]
     loja_nome = tenant
     cor_principal = "#FFD700"   # Amarelo
     cor_secundaria = "#FF4500"  # Laranja
     cor_botao = "#DC3545"       # Vermelho
 
     return render_template(
-        "store/base_store.html",
+        "store/pages/home.html",
         loja_nome=loja_nome,
         cor_principal=cor_principal,
         cor_secundaria=cor_secundaria,
-        cor_botao=cor_botao
+        cor_botao=cor_botao,
+        categorias=categorias,
+        produtos=produtos
     )
 
 @bp.route("/<string:tenant>/products")
