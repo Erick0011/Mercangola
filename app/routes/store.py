@@ -1,15 +1,26 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 from app.services.auth import role_required
 from app.models.user import UserRole
 
 bp = Blueprint("store", __name__)
 
-# 🔓 Páginas abertas (acessíveis para qualquer usuário)
+
 @bp.route("/<string:tenant>/")
 def store_home(tenant):
-    user_name = f", {current_user.name}" if current_user.is_authenticated else ""
-    return f"Bem-vindo à loja {tenant}{user_name}"
+
+    loja_nome = tenant
+    cor_principal = "#FFD700"   # Amarelo
+    cor_secundaria = "#FF4500"  # Laranja
+    cor_botao = "#DC3545"       # Vermelho
+
+    return render_template(
+        "store/base_store.html",
+        loja_nome=loja_nome,
+        cor_principal=cor_principal,
+        cor_secundaria=cor_secundaria,
+        cor_botao=cor_botao
+    )
 
 @bp.route("/<string:tenant>/products")
 def store_products(tenant):
