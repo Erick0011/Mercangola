@@ -46,15 +46,4 @@ class Favorite(db.Model):
         db.UniqueConstraint('product_id', 'user_id', name='unique_product_user_fav'),
     )
 
-class ProductView(db.Model):
-    __tablename__ = 'product_views'
-
-    id = db.Column(db.Integer, primary_key=True)
-    tenant_id = db.Column(db.String(50), nullable=False, index=True)
-    ip_address = db.Column(db.String(100))
-    user_agent = db.Column(db.Text)
-    viewed_at = db.Column(db.DateTime, default=get_local_time())
-
-    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
 
