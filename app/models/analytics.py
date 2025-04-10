@@ -36,18 +36,6 @@ class SearchQuery(db.Model):
     searched_at = db.Column(db.DateTime, default=get_local_time())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
 
-
-# 🛒 Carrinhos abandonados - permite análise e futuras campanhas de recuperação
-class CartAbandonment(db.Model):
-    __tablename__ = 'cart_abandonments'
-
-    id = db.Column(db.Integer, primary_key=True)
-    tenant_id = db.Column(db.String(50), index=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    products = db.Column(db.JSON)  # lista de produtos com ID, nome, qty, etc.
-    abandonado_em = db.Column(db.DateTime, default=get_local_time())
-
-
 # 🔗 Produto compartilhado - mede o "engajamento social" dos produtos
 class ProductShare(db.Model):
     __tablename__ = 'produto_shares'
