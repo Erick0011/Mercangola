@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=get_local_time())
     updated_at = db.Column(db.DateTime, onupdate=get_local_time())
+    last_seen = db.Column(db.DateTime, default=get_local_time())
 
     def set_password(self, password):
         """Gera hash da senha"""
