@@ -15,7 +15,7 @@ class Store(db.Model):
     __tablename__ = 'stores'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    tenant_id = db.Column(db.String(50), unique=True, nullable=False)
+    tenant_id = db.Column(db.String(50), unique=True, nullable=False, index=True)
     slug = db.Column(db.String(100), unique=True, nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # FK para User
     name = db.Column(db.String(255), nullable=False)

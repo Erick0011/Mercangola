@@ -13,8 +13,7 @@ def store_home(tenant):
         {"nome": "Roupas", "icon": "tshirt"},
         {"nome": "Alimentos", "icon": "apple-alt"},
         {"nome": "Eletrônicos", "icon": "tv"},
-        {"nome": "Roupas 2", "icon": "tshirt"},
-
+        {"nome": "Cozinha", "icon": "blender"},
     ]
 
     produtos = [
