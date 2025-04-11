@@ -22,12 +22,22 @@ def register():
 
 @bp.route("/register_store_owner", methods=["GET", "POST"])
 def register_store_owner():
+    print("Entrou na função register_store_owner")
     form = StoreOwnerRegistrationForm()
 
+    # Imprimir dados do formulário
     if form.validate_on_submit():
+        print(f"Dados do formulário: {form.data}")
         user, store = create_store_owner(form)
         if user and store:
+            print("Usuário e loja criados com sucesso.")
             return redirect(url_for("dashboard.dashboard_home"))
+        else:
+            print("Erro ao criar usuário ou loja.")
+    else:
+        print("Formulário não validado.")
+        for field, errors in form.errors.items():
+            print(f"Erros no campo {field}: {errors}")
 
     return render_template("public/register_store_owner.html", form=form)
 

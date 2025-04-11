@@ -64,12 +64,22 @@ def seed_categories():
     {"name": "Serviços Digitais", "icon": "cloud"}
   ]
 
+
   for data in categories_data:
-    category = Category(name=data["name"], icon=data["icon"])
-    db.session.add(category)
+      # Verifica se a categoria já existe
+      existing_category = Category.query.filter_by(name=data["name"]).first()
+      if not existing_category:
+          category = Category(name=data["name"], icon=data["icon"])
+          db.session.add(category)
+          print(f"Categoria '{data['name']}' adicionada.")
+      else:
+          print(f"Categoria '{data['name']}' já existe.")
+
 
   db.session.commit()
   print("Categorias adicionadas com sucesso!")
+
+
 
 class StoreCategory(db.Model):
   __tablename__ = 'store_categories'
