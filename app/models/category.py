@@ -79,4 +79,7 @@ class StoreCategory(db.Model):
   tenant_id = db.Column(db.String(50), nullable=False)  # herdado da loja
   category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
 
+  category = db.relationship('Category', back_populates='store_categories')
+  store = db.relationship('Store', back_populates='categories')
+
 
