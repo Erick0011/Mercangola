@@ -35,7 +35,7 @@ def category_select():
 
         db.session.commit()
         flash('Categorias atualizadas com sucesso!', 'success')
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard.category_select'))
 
     # Categorias que já estão cadastradas para essa loja
     categorias_atuais = [sc.category_id for sc in store.categories]
