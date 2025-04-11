@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from flask_login import current_user
 from app.services.auth import role_required
 from app.models.user import UserRole
+from app.models import Store, Category, StoreCategory
+from app.extensions import db
 
 bp = Blueprint("dashboard", __name__)
 
@@ -9,6 +11,40 @@ bp = Blueprint("dashboard", __name__)
 @role_required(UserRole.STORE_OWNER)
 def dashboard_home():
     return render_template("dashboard/base_dashboard.html")
+
+@bp.route('/escolher-categorias', methods=['GET', 'POST'])
+@role_required(UserRole.STORE_OWNER)
+def category_select():
+    store = Store.query.filter_by(owner_id=current_user.id).first_or_404()
+    todas_categorias = Category.query.all()
+
+    if request.method == 'POST':
+        selecionadas_ids = request.form.getlist('categories')
+
+        # Apagar categorias antigas da loja
+        StoreCategory.query.filter_by(store_id=store.id).delete()
+
+        # Adicionar novas categorias selecionadas
+        for cid in selecionadas_ids:
+            nova = StoreCategory(
+                store_id=store.id,
+                tenant_id=store.tenant_id,  # pegando o tenant da store
+                category_id=int(cid)
+            )
+            db.session.add(nova)
+
+        db.session.commit()
+        flash('Categorias atualizadas com sucesso!', 'success')
+        return redirect(url_for('dashboard'))
+
+    # Categorias que já estão cadastradas para essa loja
+    categorias_atuais = [sc.category_id for sc in store.categories]
+
+    return render_template('escolher_categorias.html',
+                           categorias=todas_categorias,
+                           selecionadas=categorias_atuais)
+
+
 
 @bp.route("/get_data")
 def get_data():
@@ -29,6 +65,8 @@ def get_data():
         "grafico_regioes": [50000, 30000, 20000, 15000, 10000]
     }
     return jsonify(data)
+
+
 
 @bp.route('/products')
 def manage_products():
