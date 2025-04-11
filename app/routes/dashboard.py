@@ -40,9 +40,11 @@ def category_select():
     # Categorias que já estão cadastradas para essa loja
     categorias_atuais = [sc.category_id for sc in store.categories]
 
-    return render_template('escolher_categorias.html',
+    return render_template('dashboard/category_select.html',
                            categorias=todas_categorias,
-                           selecionadas=categorias_atuais)
+                           selecionadas=categorias_atuais,
+                           store=store
+                           )
 
 
 
