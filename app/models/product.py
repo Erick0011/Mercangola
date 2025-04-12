@@ -13,8 +13,8 @@ class Product(db.Model):
     created_at = db.Column(db.DateTime, default=get_local_time)
     updated_at = db.Column(db.DateTime, default=get_local_time, onupdate=get_local_time())
 
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
-    category = db.relationship("Category", backref="products")
+    store_category_id = db.Column(db.Integer, db.ForeignKey('store_categories.id'))
+    store_category = db.relationship("StoreCategory", backref="products")
 
     media = db.relationship("ProductMedia", backref="product", cascade="all, delete")
     reviews = db.relationship("Review", backref="product", cascade="all, delete")
