@@ -2,49 +2,142 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registro de Loja | Mercangola</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/bootstrap.min.css') }}">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/public/register_store_owner.css') }}">
+
+    <!-- Leaflet.js para o mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Intl-Tel-Input (Para adicionar código de país) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
 </head>
 <body>
-    <h2>Registro de Store Owner</h2>
+
+<div class="container mt-5">
+    <h2><i class="fas fa-store"></i> Registro de Store Owner</h2>
+
     <form method="POST">
         {{ form.hidden_tag() }}
 
-        <h3>Dados do Usuário</h3>
-        <label>{{ form.name.label }}</label> {{ form.name() }}
-        <label>{{ form.email.label }}</label> {{ form.email() }}
-        <label>{{ form.telefone.label }}</label> {{ form.telefone() }}
-        <label>{{ form.password.label }}</label> {{ form.password() }}
-        <label>{{ form.confirm_password.label }}</label> {{ form.confirm_password() }}
+        <!-- Dados do Usuário -->
+        <div class="card">
+            <h3><i class="fas fa-user"></i> Dados do Usuário</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>{{ form.name.label }}</label> {{ form.name(class="form-control") }}
+                </div>
+                <div class="col-md-6">
+                    <label>{{ form.email.label }}</label> {{ form.email(class="form-control") }}
+                </div>
+                <div class="col-md-6">
+                    <label>{{ form.telefone.label }}</label>
+                    <input type="tel" id="telefone" name="telefone" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>{{ form.password.label }}</label> {{ form.password(class="form-control") }}
+                </div>
+                <div class="col-md-6">
+                    <label>{{ form.confirm_password.label }}</label> {{ form.confirm_password(class="form-control") }}
+                </div>
+            </div>
+        </div>
 
-        <h3>Dados da Loja</h3>
-        <label>{{ form.store_name.label }}</label> {{ form.store_name() }}
-        <label>{{ form.slug.label }}</label> {{ form.slug() }}
-        <label>{{ form.description.label }}</label> {{ form.description() }}
+        <!-- Dados da Loja -->
+        <div class="card">
+            <h3><i class="fas fa-store"></i> Dados da Loja</h3>
+                <label>{{ form.store_name.label }}</label>
+                {{ form.store_name(class="form-control", id="store_name") }}
 
-        <h3>Contato</h3>
-        <label>{{ form.phone.label }}</label> {{ form.phone() }}
-        <label>{{ form.email_store.label }}</label> {{ form.email_store() }}
-        <label>{{ form.website.label }}</label> {{ form.website() }}
+                <label>{{ form.slug.label }}</label>
+                {{ form.slug(class="form-control", id="slug") }}
+            <label>{{ form.description.label }}</label> {{ form.description(class="form-control") }}
+        </div>
 
-        <h3>Endereço</h3>
-        <label>{{ form.address.label }}</label> {{ form.address() }}
-        <label>{{ form.city.label }}</label> {{ form.city() }}
-        <label>{{ form.state.label }}</label> {{ form.state() }}
-        <label>{{ form.country.label }}</label> {{ form.country() }}
-        <label>{{ form.latitude.label }}</label> {{ form.latitude() }}
-        <label>{{ form.longitude.label }}</label> {{ form.longitude() }}
+        <!-- Contato -->
+        <div class="card">
+            <h3><i class="fas fa-envelope"></i> Contato</h3>
+            <label>{{ form.phone.label }}</label>
+            <input type="tel" id="phone" name="phone" class="form-control">
+            <label>{{ form.email_store.label }}</label> {{ form.email_store(class="form-control") }}
+            <label>{{ form.website.label }}</label> {{ form.website(class="form-control") }}
+        </div>
 
-        <h3>Redes Sociais</h3>
-        <label>{{ form.facebook.label }}</label> {{ form.facebook() }}
-        <label>{{ form.instagram.label }}</label> {{ form.instagram() }}
-        <label>{{ form.twitter.label }}</label> {{ form.twitter() }}
-        <label>{{ form.whatsapp.label }}</label> {{ form.whatsapp() }}
+        <!-- Endereço -->
+        <div class="card">
+            <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
 
-        <h3>Tipo de Loja</h3>
-        <label>{{ form.store_type.label }}</label> {{ form.store_type() }}
+            <label>País</label>
+            <input type="text" class="form-control" value="Angola" readonly>
 
-        <br>
-        <button type="submit">Registrar Loja</button>
+            <label>Província</label>
+            <select id="state" name="state" class="form-control" >
+                <option value="">Selecione uma província</option>
+            </select>
+
+            <label>Cidade</label>
+            <select id="city" name="city" class="form-control" disabled>
+                <option value="">Selecione uma cidade</option>
+            </select>
+
+            <label>Endereço</label>
+            <input type="text" id="address" name="address" class="form-control" disabled>
+            <h5 class="mt-3">Selecione a Localização</h5>
+            <div id="map"></div>
+            <input type="hidden" name="latitude" id="latitude">
+            <input type="hidden" name="longitude" id="longitude">
+        </div>
+
+        <!-- Redes Sociais -->
+        <div class="card">
+            <h3><i class="fas fa-share-alt"></i> Redes Sociais</h3>
+            <label>{{ form.facebook.label }}</label> {{ form.facebook(class="form-control") }}
+            <label>{{ form.instagram.label }}</label> {{ form.instagram(class="form-control") }}
+            <label>{{ form.tiktok.label }}</label> {{ form.tiktok(class="form-control") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100"><i class="fas fa-check"></i> Registrar Loja</button>
     </form>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="{{ url_for('static', filename='vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Custom Script -->
+<script src="{{ url_for('static', filename='js/public/register_store_owner.js') }}"></script>
+
+
+<script>
+
+</script>
+
+<!-- Leaflet.js para o mapa -->
+<script>
+
+</script>
+
+<script>
+
+</script>
+<script>
+
+
+</script>
+
+
 </body>
 </html>

@@ -1,11 +1,15 @@
 from app import create_app
 from app.extensions import db
 from app.models.user import User, UserRole
+from app.models import seed_categories
 
 app = create_app()
 
 with app.app_context():
     db.create_all()  # Cria todas as tabelas
+
+    # Cria as categorias disponiveis - fix temporario
+    seed_categories()
 
     # Verificar se já existem usuários para evitar duplicação
     if not User.query.first():

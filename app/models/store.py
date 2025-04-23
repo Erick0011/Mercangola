@@ -10,17 +10,12 @@ class StorePlan(Enum):
     ADVANCED = "advanced"
     ENTERPRISE = "enterprise"
 
-# Enum para o tipo de loja
-class StoreType(Enum):
-    PHYSICAL = "physical"
-    DIGITAL = "digital"
-    BOTH = "both"
 
 class Store(db.Model):
     __tablename__ = 'stores'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    tenant_id = db.Column(db.String(50), unique=True, nullable=False)
+    tenant_id = db.Column(db.String(50), unique=True, nullable=False, index=True)
     slug = db.Column(db.String(100), unique=True, nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # FK para User
     name = db.Column(db.String(255), nullable=False)
@@ -42,16 +37,13 @@ class Store(db.Model):
     # Redes Sociais
     facebook = db.Column(db.String(255), nullable=True)
     instagram = db.Column(db.String(255), nullable=True)
-    twitter = db.Column(db.String(255), nullable=True)
+    tiktok = db.Column(db.String(255), nullable=True)
     whatsapp = db.Column(db.String(20), nullable=True)
 
     # Plano da Loja
     plan = db.Column(db.Enum(StorePlan), default=StorePlan.BASIC, nullable=False)
     subscription_fee = db.Column(db.Float, default=0.0, nullable=False)  # Mensalidade do plano escolhido
     expiration_date = db.Column(db.DateTime, nullable=False)  # Data de expiração do plano
-
-    # Tipo de Loja (Produtos físicos, digitais ou ambos)
-    store_type = db.Column(db.Enum(StoreType), default=StoreType.BOTH, nullable=False)
 
     # Controle
     created_at = db.Column(db.DateTime, default=get_local_time)
@@ -60,6 +52,8 @@ class Store(db.Model):
 
     # Relacionamento com o usuário
     owner = db.relationship('User', backref=db.backref('stores', lazy=True))
+
+    categories = db.relationship('StoreCategory', back_populates='store')
 
     def check_expiration(self):
         """Atualiza o status da loja se a assinatura expirou."""

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField, FloatField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional, URL
-from app.models.store import StorePlan, StoreType  # Importando os enums existentes
+
 
 class StoreOwnerRegistrationForm(FlaskForm):
     # Campos do usuário (User)
@@ -32,10 +32,8 @@ class StoreOwnerRegistrationForm(FlaskForm):
     # Redes sociais
     facebook = StringField("Facebook", validators=[Optional(), URL()])
     instagram = StringField("Instagram", validators=[Optional(), URL()])
-    twitter = StringField("Twitter", validators=[Optional(), URL()])
-    whatsapp = StringField("WhatsApp", validators=[Optional(), Length(max=20)])
+    tiktok = StringField("Tiktok", validators=[Optional(), URL()])
 
-    # Tipo de loja
-    store_type = SelectField("Tipo de Loja", choices=[(t.value, t.name) for t in StoreType], validators=[DataRequired()])
+
 
     submit = SubmitField("Registrar Loja")

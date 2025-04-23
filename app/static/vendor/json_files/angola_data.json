@@ -1,0 +1,250 @@
+{
+  "provincias": [
+    {
+      "nome": "Bengo",
+      "municipios": [
+        "Ambriz",
+        "Bula Atumba",
+        "Dande",
+        "Dembos",
+        "Nambuangongo",
+        "Pango Aluquém",
+        "Quissama"
+      ]
+    },
+    {
+      "nome": "Benguela",
+      "municipios": [
+        "Baía Farta",
+        "Balombo",
+        "Benguela",
+        "Bocoio",
+        "Caimbambo",
+        "Chongorói",
+        "Cubal",
+        "Ganda",
+        "Lobito"
+      ]
+    },
+    {
+      "nome": "Bié",
+      "municipios": [
+        "Andulo",
+        "Camacupa",
+        "Catabola",
+        "Chinguar",
+        "Chitembo",
+        "Cuemba",
+        "Cunhinga",
+        "Cuíto",
+        "Nharea"
+      ]
+    },
+    {
+      "nome": "Cabinda",
+      "municipios": [
+        "Belize",
+        "Buco-Zau",
+        "Cabinda",
+        "Cacongo"
+      ]
+    },
+    {
+      "nome": "Cuando-Cubango",
+      "municipios": [
+        "Calai",
+        "Cuangar",
+        "Cuchi",
+        "Cuito Cuanavale",
+        "Dirico",
+        "Longa",
+        "Mavinga",
+        "Menongue",
+        "Rivungo"
+      ]
+    },
+    {
+      "nome": "Cuanza Norte",
+      "municipios": [
+        "Ambaca",
+        "Banga",
+        "Bolongongo",
+        "Cambambe",
+        "Cazengo",
+        "Golungo Alto",
+        "Gonguembo",
+        "Lucala",
+        "Quiculungo",
+        "Samba Caju"
+      ]
+    },
+    {
+      "nome": "Cuanza Sul",
+      "municipios": [
+        "Amboim",
+        "Cassongue",
+        "Cela",
+        "Conda",
+        "Ebo",
+        "Libolo",
+        "Mussende",
+        "Porto Amboim",
+        "Quibala",
+        "Quilenda",
+        "Seles",
+        "Sumbe"
+      ]
+    },
+    {
+      "nome": "Cunene",
+      "municipios": [
+        "Cahama",
+        "Cuanhama",
+        "Curoca",
+        "Cuvelai",
+        "Namacunde",
+        "Ombadja"
+      ]
+    },
+    {
+      "nome": "Huambo",
+      "municipios": [
+        "Bailundo",
+        "Caála",
+        "Catchiungo",
+        "Ekunha",
+        "Huambo",
+        "Londuimbale",
+        "Longonjo",
+        "Mungo",
+        "Tchicala-Tcholoanga",
+        "Tchindjenje",
+        "Ucuma"
+      ]
+    },
+    {
+      "nome": "Huíla",
+      "municipios": [
+        "Caconda",
+        "Caluquembe",
+        "Chibia",
+        "Chicomba",
+        "Chipindo",
+        "Gambos",
+        "Humpata",
+        "Jamba",
+        "Lubango",
+        "Matala",
+        "Quilengues",
+        "Quipungo"
+      ]
+    },
+    {
+      "nome": "Luanda",
+      "municipios": [
+        "Belas",
+        "Cacuaco",
+        "Cazenga",
+        "Ícolo e Bengo",
+        "Luanda",
+        "Quissama",
+        "Viana"
+      ]
+    },
+    {
+      "nome": "Lunda Norte",
+      "municipios": [
+        "Cambulo",
+        "Capenda-Camulemba",
+        "Caungula",
+        "Chitato",
+        "Cuango",
+        "Cuílo",
+        "Lubalo",
+        "Lucapa",
+        "Xá-Muteba"
+      ]
+    },
+    {
+      "nome": "Lunda Sul",
+      "municipios": [
+        "Cacolo",
+        "Dala",
+        "Muconda",
+        "Saurimo"
+      ]
+    },
+    {
+      "nome": "Malanje",
+      "municipios": [
+        "Cacuso",
+        "Calandula",
+        "Cambundi-Catembo",
+        "Cangandala",
+        "Caombo",
+        "Cuaba Nzogo",
+        "Cunda-Dia-Baze",
+        "Luquembo",
+        "Malanje",
+        "Marimba",
+        "Massango",
+        "Mucari",
+        "Quela",
+        "Quirima"
+      ]
+    },
+    {
+      "nome": "Moxico",
+      "municipios": [
+        "Alto Zambeze",
+        "Bundas",
+        "Camanongue",
+        "Léua",
+        "Luacano",
+        "Luau",
+        "Luchazes",
+        "Moxico"
+      ]
+    },
+    {
+      "nome": "Namibe",
+      "municipios": [
+        "Bibala",
+        "Camucuio",
+        "Moçâmedes",
+        "Tômbua",
+        "Virei"
+      ]
+    },
+    {
+      "nome": "Uíge",
+      "municipios": [
+        "Alto Cauale",
+        "Ambuíla",
+        "Bembe",
+        "Buengas",
+        "Damba",
+        "Macocola",
+        "Mucaba",
+        "Negage",
+        "Puri",
+        "Quimbele",
+        "Quitexe",
+        "Sanza Pombo",
+        "Songo",
+        "Uíge",
+        "Zombo"
+      ]
+    },
+    {
+      "nome": "Zaire",
+      "municipios": [
+        "Cuimba",
+        "M'Banza Kongo",
+        "Noqui",
+        "N'Zeto",
+        "Soyo"
+      ]
+    }
+  ]
+}

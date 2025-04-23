@@ -2,9 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block tittle %} {% endblock %}</title>
+
+    <!-- Bootstrap CSS e Font Awesome (CDNs) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Estilos personalizados com variáveis -->
+    <style>
+        :root {
+            --cor-principal: {{ cor_principal }};
+            --cor-secundaria: {{ cor_secundaria }};
+            --cor-botao: {{ cor_botao }};
+            --cor-texto: {{ cor_texto }};
+        }
+        .navbar-custom {
+            background-color: var(--cor-principal) !important;
+            border-radius: 40px;
+            margin: 1.5rem;
+            padding: 1rem 2rem;
+        }
+
+        .navbar-custom .nav-link,
+        .navbar-custom .navbar-brand {
+            color: var(--cor-texto) !important;
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: var(--cor-secundaria) !important;
+        }
+
+        .btn-custom {
+            background-color: var(--cor-botao);
+            color: var(--cor-texto);
+            border-radius: 999px;
+        }
+
+        .btn-custom:hover {
+            background-color: #bb2d3b; /* tom mais escuro */
+        }
+
+        @media (max-width: 768px) {
+            .search-form {
+                width: 100% !important;
+                margin-top: 0.5rem;
+            }
+        }
+          @media (max-width: 767px) {
+            .card .row > div {
+              margin-bottom: 1rem;
+            }
+          }
+        {% block style %}{% endblock %}
+    </style>
 </head>
 <body>
+
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom shadow-lg">
+        <div class="container-fluid">
+
+        <!-- Nome da Loja -->
+        <a class="navbar-brand fw-bold" href="#" style="font-size: 1.5rem;">
+            {{ loja_nome }}
+        </a>
+
+        <!-- Botão de colapso -->
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Conteúdo -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+            <!-- Barra de Pesquisa (sempre visível) -->
+            <form class="d-flex mx-auto search-form" style="width: 50%;">
+                <input class="form-control me-2 rounded-pill" type="search" placeholder="Pesquisar produtos..." aria-label="Search">
+                <button class="btn btn-light rounded-pill" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <!-- Ícones -->
+            <ul class="navbar-nav ms-auto d-flex flex-row gap-3 align-items-center mt-2 mt-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-shopping-cart fa-lg"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-info-circle fa-lg"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-custom px-3" href="#"><i class="fas fa-user"></i> Conta</a>
+                </li>
+
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="pt-4">
+    {% block content %}{% endblock %}
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
