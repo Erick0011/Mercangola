@@ -1,117 +1,50 @@
+<!-- meta tags and other links -->
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Lojista - Mercangola</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/bootstrap.min.css') }}">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Chart js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard/base_dashboard.css') }}">
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercangola - {% block title %} {% endblock %}</title>
 
-    </style>
+  {% include "dashboard/links-css.html"%}
 </head>
-<body>
+  <body>
+    {% include 'dashboard/side-bar.html' %}
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <h3 class="logo">M<span>ercangola</span></h3>
+    <main class="dashboard-main">
+          {% include 'dashboard/navbar-header.html' %}
 
-        <a href="#dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+        <div class="dashboard-main-body">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
+                  <h6 class="fw-semibold mb-0">Blank Page</h6>
+                  <ul class="d-flex align-items-center gap-2">
+                    <li class="fw-medium">
+                      <a href="index.html" class="d-flex align-items-center gap-1 hover-text-primary">
+                        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
+                        Dashboard
+                      </a>
+                    </li>
+                    <li>-</li>
+                    <li class="fw-medium">Blank Page</li>
+                  </ul>
+            </div>
+            <div class="row gy-4">
+              {% block content %} {% endblock %}
+            </div>
 
-        <a href="#produtos" class="dropdown-btn">
-            <i class="fas fa-box"></i> <span>Produtos</span>
-            <i class="fas fa-chevron-down ms-auto"></i>
-        </a>
-        <div class="dropdown-container">
-            <a href="#adicionar-produto"><i class="fas fa-plus"></i> Adicionar Produto</a>
-            <a href="#gerenciar-produtos"><i class="fas fa-cogs"></i> Gerenciar Produtos</a>
         </div>
+        <footer class="d-footer">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-auto">
+              <p class="mb-0">© 2025 Mercangola. Todos os direitos reservados.</p>
+            </div>
+            <div class="col-auto">
+              <p class="mb-0">Feito por <span class="text-primary-600">NextKode</span></p>
+            </div>
+          </div>
+        </footer>
+    </main>
 
-        <a href="#relatorios" class="dropdown-btn">
-            <i class="fas fa-chart-line"></i> <span>Relatórios</span>
-            <i class="fas fa-chevron-down ms-auto"></i>
-        </a>
-        <div class="dropdown-container">
-            <a href="#vendas"><i class="fas fa-dollar-sign"></i> Vendas</a>
-            <a href="#clientes"><i class="fas fa-user"></i> Clientes</a>
-        </div>
-
-        <a href="#pedidos"><i class="fas fa-shopping-cart"></i> <span>Pedidos</span></a>
-
-        <a href="#mensagens" class="dropdown-btn">
-            <i class="fas fa-envelope"></i> <span>Mensagens</span>
-            <i class="fas fa-chevron-down ms-auto"></i>
-        </a>
-        <div class="dropdown-container">
-            <a href="#caixa-entrada"><i class="fas fa-inbox"></i> Caixa de Entrada</a>
-            <a href="#enviados"><i class="fas fa-paper-plane"></i> Enviados</a>
-        </div>
-
-        <a href="#marketing" class="dropdown-btn">
-            <i class="fas fa-bullhorn"></i> <span>Marketing</span>
-            <i class="fas fa-chevron-down ms-auto"></i>
-        </a>
-        <div class="dropdown-container">
-            <a href="#campanhas"><i class="fas fa-bullseye"></i> Campanhas</a>
-            <a href="#estatisticas"><i class="fas fa-chart-pie"></i> Estatísticas</a>
-        </div>
-
-        <a href="#configuracoes" class="dropdown-btn">
-            <i class="fas fa-cog"></i> <span>Configurações</span>
-            <i class="fas fa-chevron-down ms-auto"></i>
-        </a>
-        <div class="dropdown-container">
-            <a href="#perfil"><i class="fas fa-user-cog"></i> Perfil</a>
-            <a href="#seguranca"><i class="fas fa-lock"></i> Segurança</a>
-        </div>
-
-        <div class="sidebar-footer">
-            <a href="#" class="text-light"><i class="fas fa-question-circle"></i> <span>Ajuda</span></a>
-            <a href="{{ url_for('public.logout') }}" class="text-danger"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
-        </div>
-    </div>
-
-
-    <!-- Conteúdo Principal -->
-    <div id="dashboard" class="main-content">
-         {% include "/dashboard/home.html" %}
-    </div>
-
-
-    <div id="produtos" class="content-section">Produtos Content</div>
-    <div id="adicionar-produto" class="content-section">Adicionar Produto</div>
-    <div id="gerenciar-produtos" class="content-section">Gerenciar Produtos</div>
-
-    <div id="relatorios" class="content-section">Relatórios Content</div>
-    <div id="vendas" class="content-section">Vendas Content</div>
-    <div id="clientes" class="content-section">Clientes Content</div>
-
-    <div id="pedidos" class="content-section">Pedidos Content</div>
-
-    <div id="mensagens" class="content-section">Mensagens Content</div>
-    <div id="caixa-entrada" class="content-section">Caixa de Entrada Content</div>
-    <div id="enviados" class="content-section">Enviados Content</div>
-
-    <div id="marketing" class="content-section">Marketing Content</div>
-    <div id="campanhas" class="content-section">Campanhas Content</div>
-    <div id="estatisticas" class="content-section">Estatísticas Content</div>
-
-    <div id="configuracoes" class="content-section">Configurações Content</div>
-    <div id="perfil" class="content-section">Perfil Content</div>
-    <div id="seguranca" class="content-section">Segurança Content</div>
-
-
-    <!-- jQuery -->
-    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
-    <!-- js puro -->
-    <script src="{{ url_for('static', filename='js/dashboard/base_dashboard.js') }}"></script>
-    <!-- Bootstrap JS -->
-    <script src="{{ url_for('static', filename='vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
+  {% include "dashboard/links-js.html"%}
 </body>
 </html>
