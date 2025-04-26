@@ -2,7 +2,6 @@ from app.extensions import db
 from app.services import get_local_time
 from enum import Enum
 
-
 # Enum para os planos disponíveis
 class StorePlan(Enum):
     BASIC = "basic"
@@ -10,14 +9,12 @@ class StorePlan(Enum):
     ADVANCED = "advanced"
     ENTERPRISE = "enterprise"
 
-
 class Store(db.Model):
     __tablename__ = 'stores'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tenant_id = db.Column(db.String(50), unique=True, nullable=False, index=True)
     slug = db.Column(db.String(100), unique=True, nullable=False)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # FK para User
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=True)
 
@@ -50,10 +47,8 @@ class Store(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=get_local_time)
     is_active = db.Column(db.Boolean, default=True)
 
-    # Relacionamento com o usuário
-    owner = db.relationship('User', backref=db.backref('stores', lazy=True))
-
-    categories = db.relationship('StoreCategory', back_populates='store')
+    # Relacionamento com StoreAccount
+    accounts = db.relationship('StoreAccount', backref='store', lazy=True)
 
     def check_expiration(self):
         """Atualiza o status da loja se a assinatura expirou."""
@@ -62,5 +57,3 @@ class Store(db.Model):
 
     def __repr__(self):
         return f"<Store {self.name} - Plan: {self.plan.value}>"
-
-
