@@ -31,7 +31,6 @@ class User(db.Model, UserMixin):
     last_seen = db.Column(db.DateTime, default=get_local_time())
 
     __mapper_args__ = {
-        'polymorphic_identity': 'user',
         'polymorphic_on': role
     }
 
