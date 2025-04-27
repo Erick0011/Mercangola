@@ -6,3 +6,6 @@ from .analytics import *
 from .category import *
 from .review import *
 from .customization import *
+from .storeAccount import *
+from .client import *
+from .admin import *

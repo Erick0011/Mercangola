@@ -50,6 +50,8 @@ class Store(db.Model):
     # Relacionamento com StoreAccount
     accounts = db.relationship('StoreAccount', backref='store', lazy=True)
 
+    categories = db.relationship('StoreCategory', back_populates='store')
+
     def check_expiration(self):
         """Atualiza o status da loja se a assinatura expirou."""
         if self.expiration_date < get_local_time:

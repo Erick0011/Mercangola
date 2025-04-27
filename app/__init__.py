@@ -11,7 +11,7 @@ def create_app():
     login_manager.init_app(app)
 
     # Importa os modelos
-    from app.models import Store, User, cart, analytics, category, product, review, customization
+    from app.models import Store, User, cart, analytics, category, product, review, customization, storeAccount, admin, client
     # Função para carregar o usuário pelo ID
     @login_manager.user_loader
     def load_user(user_id):
