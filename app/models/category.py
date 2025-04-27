@@ -72,8 +72,7 @@ def seed_categories():
           category = Category(name=data["name"], icon=data["icon"])
           db.session.add(category)
           print(f"Categoria '{data['name']}' adicionada.")
-      else:
-          print(f"Categoria '{data['name']}' já existe.")
+
 
 
   db.session.commit()
