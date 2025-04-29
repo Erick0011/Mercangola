@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wowdash - Bootstrap 5 Admin Dashboard HTML Template</title>
+    <title>Mercangola - Cadastro de Conta/Loja</title>
     {% include "dashboard/links-css.html"%}
 </head>
 
@@ -14,14 +14,15 @@
     <section class="auth bg-base d-flex flex-wrap">
         <div class="auth-left d-lg-block d-none">
             <div class="d-flex align-items-center flex-column h-100 justify-content-center">
-                <img src="assets/images/auth/auth-img.png" alt="Imagem de autenticação">
+                <img src="{{ url_for('static', filename='assets-1/images/auth/auth-img.png') }}" alt="Imagem de autenticação">
             </div>
         </div>
         <div class="auth-right py-32 px-24 d-flex flex-column justify-content-center">
             <div class="max-w-464-px mx-auto w-100">
                 <div>
-                    <a href="index.html" class="mb-40 max-w-290-px">
-                        <img src="assets/images/logo.png" alt="Logo">
+                    <a href="{{ url_for('public.home') }}" class="mb-40 max-w-290-px">
+                        <img src="{{ url_for('static', filename='assets-1/images/logo.png') }}" alt="Logo">
+
                     </a>
                     <h4 class="mb-12">Criar Conta</h4>
                     <p class="mb-32 text-secondary-light text-lg">Preencha os dados para criar sua conta e sua loja</p>
@@ -142,7 +143,7 @@
 
                     <!-- Login existente -->
                     <div class="mt-32 text-center text-sm">
-                        <p class="mb-0">Já tem uma conta? <a href="sign-in.html"
+                        <p class="mb-0">Já tem uma conta? <a href="{{ url_for('public.login') }}"
                                 class="text-primary-600 fw-semibold">Entrar</a></p>
                     </div>
                 </form>
