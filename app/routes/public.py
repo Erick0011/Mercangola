@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from flask_login import logout_user
 from app.models import User
 import json
+import re
 import os
 
 bp = Blueprint("public", __name__)
@@ -22,24 +23,53 @@ def register():
 
 @bp.route("/register_store_owner", methods=["GET", "POST"])
 def register_store_owner():
-    print("Entrou na função register_store_owner")
-    form = StoreOwnerRegistrationForm()
 
-    # Imprimir dados do formulário
-    if form.validate_on_submit():
-        print(f"Dados do formulário: {form.data}")
-        user, store = create_store_owner(form)
-        if user and store:
-            print("Usuário e loja criados com sucesso.")
-            return redirect(url_for("dashboard.dashboard_home"))
-        else:
-            print("Erro ao criar usuário ou loja.")
-    else:
-        print("Formulário não validado.")
-        for field, errors in form.errors.items():
-            print(f"Erros no campo {field}: {errors}")
+    if request.method == 'POST':
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        password = request.form.get('password', '')
+        confirm_password = request.form.get('confirm_password', '')
+        store_name = request.form.get('store_name', '').strip()
+        slug = request.form.get('slug', '').strip()
+        accepted_terms = request.form.get('condition')
 
-    return render_template("public/register_store_owner.html", form=form)
+        errors = []
+
+        # Nome
+        if not name:
+            errors.append("Digite seu nome.")
+
+        # Email
+        if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            errors.append("Digite um email válido.")
+
+        # Senha
+        if len(password) < 8:
+            errors.append("A senha deve ter pelo menos 8 caracteres.")
+        elif password != confirm_password:
+            errors.append("As senhas não coincidem.")
+
+        # Nome da loja
+        if not store_name:
+            errors.append("Digite o nome da loja.")
+
+        # Slug
+        if not slug:
+            errors.append("Slug inválido.")
+
+        # Termos
+        if not accepted_terms:
+            errors.append("Você precisa aceitar os termos.")
+
+        if errors:
+            for error in errors:
+                flash(error, 'danger')
+            return redirect(url_for('public.register_store_owner'))
+
+        flash("Formulário válido! (Salvar depois)", 'success')
+        return redirect(url_for('public.register_store_owner'))
+
+    return render_template("public/register_store_owner.html")
 
 @bp.route("/login", methods=["GET", "POST"])
 def login():
