@@ -16,6 +16,10 @@ def home():
 def forgot_password():
     return "Melhor lembrar, Pq na tem função de recuperar"
 
+@bp.route("/popup")
+def popup():
+    return render_template("admin/users.html")
+
 @bp.route("/register")
 def register():
     return "Em construção"

@@ -1,10 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Toasts Estilizados</title>
+
+  <!-- remix icon font css  -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets-1/css/remixicon.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f6f8fa;
+      padding: 2rem;
+    }
+
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9999;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      min-width: 260px;
+      max-width: 320px;
+      border-left: 5px solid;
+      animation: slideIn 0.3s ease-out forwards;
+      opacity: 0;
+    }
+
+    /* Toast categories with softened background and strong border */
+    .toast-info {
+      background-color: rgba(13, 202, 240, 0.15);
+      border-color: #0dcaf0;
+      color: #055160;
+    }
+
+    .toast-success {
+      background-color: rgba(25, 135, 84, 0.15);
+      border-color: #198754;
+      color: #0f5132;
+    }
+
+    .toast-warning {
+      background-color: rgba(255, 193, 7, 0.15);
+      border-color: #ffc107;
+      color: #664d03;
+    }
+
+    .toast-error {
+      background-color: rgba(220, 53, 69, 0.15);
+      border-color: #dc3545;
+      color: #842029;
+    }
+
+    .toast .message {
+      flex: 1;
+      font-size: 0.95rem;
+    }
+
+    .toast .close-btn {
+      background: none;
+      border: none;
+      color: inherit;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
+      margin-left: 10px;
+    }
+
+    .toast .close-btn:hover {
+      transform: scale(1.2);
+      color: #000;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    button {
+      margin: 5px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+      .toast .close-btn i {
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.toast .close-btn:hover i {
+  color: #000;
+}
+
+  </style>
 </head>
 <body>
+
+  <h2>Exibir Toasts</h2>
+  <button onclick="showToast('info', 'Esta é uma informação.')">Info</button>
+  <button onclick="showToast('success', 'Operação realizada com sucesso!')">Sucesso</button>
+  <button onclick="showToast('warning', 'Atenção! Algo não parece certo.')">Aviso</button>
+  <button onclick="showToast('error', 'Erro! Algo deu errado.')">Erro</button>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    function showToast(type, message) {
+      const container = document.getElementById('toastContainer');
+
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      toast.innerHTML = `
+        <span class="message">${message}</span>
+        <button class="close-btn" onclick="this.parentElement.remove()">
+  <i class="ri-close-line"></i>
+</button>
+
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 6000);
+    }
+  </script>
 
 </body>
 </html>
