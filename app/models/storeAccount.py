@@ -1,5 +1,11 @@
 from app.extensions import db
 from .user import User, UserRole
+from enum import Enum
+
+class StoreAccessLevel(Enum):
+    OWNER = "owner"                      # dono da loja
+    MANAGER = "manager"                  # gerente
+    ASSISTANT_MANAGER = "assistant_manager"  # assistente do gerente
 
 
 class StoreAccount(User):
@@ -8,9 +14,9 @@ class StoreAccount(User):
 
     is_owner = db.Column(db.Boolean, default=False)
     store_id = db.Column(db.Integer, db.ForeignKey('stores.id'), nullable=False)
-    position = db.Column(db.String(100), nullable=True)  # Ex: gerente, caixa, técnico
+    store_access_level = db.Column(db.Enum(StoreAccessLevel), nullable=True)
 
-    #store = db.relationship("Store", backref="accounts")
+    store = db.relationship("Store", backref="accounts")
 
     __mapper_args__ = {
         'polymorphic_identity': UserRole.STORE_OWNER,

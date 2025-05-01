@@ -4,6 +4,7 @@ from enum import Enum
 
 # Enum para os planos disponíveis
 class StorePlan(Enum):
+    TRIAL = "trial"
     BASIC = "basic"
     PROFESSIONAL = "professional"
     ADVANCED = "advanced"
@@ -38,7 +39,7 @@ class Store(db.Model):
     whatsapp = db.Column(db.String(20), nullable=True)
 
     # Plano da Loja
-    plan = db.Column(db.Enum(StorePlan), default=StorePlan.BASIC, nullable=False)
+    plan = db.Column(db.Enum(StorePlan), default=StorePlan.TRIAL, nullable=False)
     subscription_fee = db.Column(db.Float, default=0.0, nullable=False)  # Mensalidade do plano escolhido
     expiration_date = db.Column(db.DateTime, nullable=False)  # Data de expiração do plano
 
