@@ -15,11 +15,12 @@
       <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
     </button>
     <div>
-      <a href="index.html" class="sidebar-logo">
-        <img src="assets/images/mercangola-logo.png" alt="Mercangola logo" class="light-logo">
-        <img src="assets/images/mercangola-logo-light.png" alt="Mercangola logo" class="dark-logo">
-        <img src="assets/images/mercangola-logo-icon.png" alt="Mercangola logo" class="logo-icon">
+      <a href="{{ url_for('dashboard.dashboard_home') }}" class="sidebar-logo">
+        <img src="{{ url_for('static', filename='assets-1/images/logo.png') }}" alt="site logo" class="light-logo">
+        <img src="{{ url_for('static', filename='assets-1/images/logo-light.png') }}" alt="site logo" class="dark-logo">
+        <img src="{{ url_for('static', filename='assets-1/images/logo-icon.png') }}" alt="site logo" class="logo-icon">
       </a>
+
     </div>
     <div class="sidebar-menu-area">
       <ul class="sidebar-menu" id="sidebar-menu">
@@ -115,10 +116,6 @@
             <span>Perfil</span>
           </a>
         </li>
-
-        <li class="sidebar-menu-group-title">Mercangola</li>
-
-
       </ul>
     </div>
   </aside>
@@ -552,6 +549,7 @@
   </main>
 
     {% include "dashboard/links-js.html"%}
+    {% include 'includes/flash_toasts.html' %}
 </body>
 
 </html>
