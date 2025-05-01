@@ -25,20 +25,11 @@
     <div class="sidebar-menu-area">
       <ul class="sidebar-menu" id="sidebar-menu">
 
-        <li class="dropdown">
-          <a href="javascript:void(0)">
+        <li >
+          <a href="{{ url_for('dashboard.dashboard_home') }}">
             <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
             <span>Dashboard</span>
           </a>
-          <ul class="sidebar-submenu">
-            <li>
-              <a href="dashboard.html"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Visão
-                Geral</a>
-            </li>
-            <li>
-              <a href="analytics.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> Analytics</a>
-            </li>
-          </ul>
         </li>
 
         <li class="sidebar-menu-group-title">Gerenciamento</li>
