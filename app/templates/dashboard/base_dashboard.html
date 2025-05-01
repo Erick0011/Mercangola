@@ -131,7 +131,7 @@
           <div class="d-flex flex-wrap align-items-center gap-3">
             <button type="button" data-theme-toggle
               class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"></button>
-            <!-- Language dropdown end -->
+
 
             <div class="dropdown">
               <button
@@ -394,7 +394,7 @@
                   </li>
                   <li>
                     <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3"
-                      href="javascript:void(0)">
+                      href="{{ url_for('dashboard.dashboard_home') }}">
                       <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon> Log Out</a>
                   </li>
                 </ul>
