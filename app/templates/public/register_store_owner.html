@@ -107,7 +107,7 @@
                     <!-- Aceitação dos termos -->
                     <div class="form-check style-check d-flex align-items-start mb-16 has-validation">
                         <input class="form-check-input border border-neutral-300 mt-4" type="checkbox" id="condition"
-                            required>
+                            name="condition" required>
                         <label class="form-check-label text-sm" for="condition">
                             Ao criar uma conta, você concorda com os
                             <a href="javascript:void(0)" class="text-primary-600 fw-semibold">Termos e Condições</a> e
@@ -152,8 +152,9 @@
             </div>
         </div>
     </section>
-
     {% include "dashboard/links-js.html"%}
+    {% include 'includes/flash_toasts.html' %}
+
     <script>
         document.getElementById('store_name').addEventListener('input', function () {
             const storeName = this.value;

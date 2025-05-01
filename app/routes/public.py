@@ -37,6 +37,7 @@ def register_store_owner():
         slug = request.form.get('slug', '').strip()
         accepted_terms = request.form.get('condition')
 
+
         errors = []
 
         # Nome
@@ -64,13 +65,16 @@ def register_store_owner():
         # Termos
         if not accepted_terms:
             errors.append("Você precisa aceitar os termos.")
+            print("Debug 2: ", accepted_terms)
 
         if errors:
             for error in errors:
-                flash(error, 'danger')
+                flash(error, 'error')
+                print(error)
             return redirect(url_for('public.register_store_owner'))
 
         flash("Formulário válido! (Salvar depois)", 'success')
+        print("Formulário válido! (Salvar depois)")
         return redirect(url_for('public.register_store_owner'))
 
     return render_template("public/register_store_owner.html")

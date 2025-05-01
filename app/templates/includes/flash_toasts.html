@@ -1,0 +1,112 @@
+<!-- Toasts personalizados com suporte a flash do Flask -->
+<div class="toast-container" id="toastContainer" style="
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+"></div>
+
+<script>
+  function showToast(type, message) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.style = `
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      min-width: 260px;
+      max-width: 320px;
+      border-left: 5px solid;
+      animation: slideIn 0.3s ease-out forwards;
+      opacity: 0;
+      background-color: ${getBackgroundColor(type)};
+      border-color: ${getBorderColor(type)};
+      color: ${getTextColor(type)};
+    `;
+
+    toast.innerHTML = `
+      <span class="message" style="flex: 1; font-size: 0.95rem;">${message}</span>
+      <button class="close-btn" onclick="this.parentElement.remove()" style="
+        background: none;
+        border: none;
+        color: inherit;
+        font-weight: bold;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: transform 0.2s, color 0.2s;
+      ">
+        <i class="ri-close-line" style="font-size: 1.2rem; pointer-events: none;"></i>
+      </button>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 10000);
+  }
+
+  function getBackgroundColor(type) {
+    switch (type) {
+      case 'info': return 'rgba(13, 202, 240, 0.15)';
+      case 'success': return 'rgba(25, 135, 84, 0.15)';
+      case 'warning': return 'rgba(255, 193, 7, 0.15)';
+      case 'error': return 'rgba(220, 53, 69, 0.15)';
+      default: return '#f6f8fa';
+    }
+  }
+
+  function getBorderColor(type) {
+    switch (type) {
+      case 'info': return '#0dcaf0';
+      case 'success': return '#198754';
+      case 'warning': return '#ffc107';
+      case 'error': return '#dc3545';
+      default: return '#ccc';
+    }
+  }
+
+  function getTextColor(type) {
+    switch (type) {
+      case 'info': return '#055160';
+      case 'success': return '#0f5132';
+      case 'warning': return '#664d03';
+      case 'error': return '#842029';
+      default: return '#333';
+    }
+  }
+
+  // Ativando os flashs do Flask
+  document.addEventListener("DOMContentLoaded", function () {
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          showToast("{{ category }}", `{{ message | escape | replace("`", "\\`") }}`);
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  });
+
+  // Animação
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+</script>
