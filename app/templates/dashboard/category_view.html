@@ -1,0 +1,105 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Mercangola | Categorias{% endblock %}
+
+{% block title2 %}Categorias{% endblock %}
+
+{% block content %}
+<div class="card h-100 p-0 radius-12">
+  <div class="card-header border-bottom bg-base py-16 px-24 d-flex align-items-center flex-wrap gap-3 justify-content-between">
+    <form class="navbar-search" method="get">
+      <input type="text" class="bg-base h-40-px w-auto" name="search" placeholder="Pesquisar" value="{{ request.args.get('search', '') }}">
+      <button type="submit" class="btn btn-sm btn-outline-primary">Buscar</button>
+    </form>
+
+    <!-- Botão para adicionar categoria -->
+    <button type="button" class="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#modalAdicionarCategoria">
+      <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
+      Adicionar Categoria
+    </button>
+  </div>
+
+  <!-- Tabela de categorias -->
+  <div class="card-body p-24">
+    <div class="table-responsive scroll-sm">
+      <table class="table bordered-table sm-table mb-0">
+        <thead>
+          <tr>
+            <th scope="col">Nº</th>
+            <th scope="col" class="text-center">Nome</th>
+            <th scope="col" class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for category in categories %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td class="text-center">{{ category.name }}</td>
+            <td class="text-center">
+              <div class="d-flex align-items-center gap-10 justify-content-center">
+                <button type="button" class="bg-success-100 text-success-600 bg-hover-success-200 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria{{ category.id }}">
+                  <iconify-icon icon="lucide:edit" class="menu-icon"></iconify-icon>
+                </button>
+                <form method="post" action="{{ url_for('dashboard.delete_category', categoria_id=category.id) }}" onsubmit="return confirm('Tem certeza que deseja excluir esta categoria?');">
+                  <button type="submit" class="bg-danger-focus bg-hover-danger-200 text-danger-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
+                    <iconify-icon icon="fluent:delete-24-regular" class="menu-icon"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Modal: Editar Categoria -->
+          <div class="modal fade" id="modalEditarCategoria{{ category.id }}" tabindex="-1" aria-labelledby="modalEditarCategoriaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content radius-20 p-24">
+                <div class="modal-header border-bottom-0 p-0 mb-20">
+                  <h5 class="modal-title fs-20 fw-bold">Editar Categoria</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body p-0">
+                  <form method="post" action="{{ url_for('dashboard.edit_category', categoria_id=category.id) }}">
+                    <div class="mb-3">
+                      <label class="form-label">Nome da Categoria</label>
+                      <input type="text" name="name" class="form-control" value="{{ category.name }}">
+                    </div>
+                    <div class="d-flex justify-content-end mt-24">
+                      <button type="button" class="btn btn-light me-8" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary">Atualizar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal: Adicionar Categoria -->
+  <div class="modal fade" id="modalAdicionarCategoria" tabindex="-1" aria-labelledby="modalAdicionarCategoriaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content radius-20 p-24">
+        <div class="modal-header border-bottom-0 p-0 mb-20">
+          <h5 class="modal-title fs-20 fw-bold" id="modalAdicionarCategoriaLabel">Adicionar Categoria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body p-0">
+          <form method="post" action="{{ url_for('dashboard.add_category') }}">
+            <div class="mb-3">
+              <label class="form-label">Nome da Categoria</label>
+              <input type="text" class="form-control" name="name" placeholder="Ex: Livros">
+            </div>
+            <div class="d-flex justify-content-end mt-24">
+              <button type="button" class="btn btn-light me-8" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

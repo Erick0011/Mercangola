@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from flask_login import current_user
 from app.services.auth import role_required
 from app.models.user import UserRole
-from app.models import Store, Category, StoreCategory
+from app.models import Store, StoreCategory
 from app.extensions import db
 
 bp = Blueprint("dashboard", __name__)
@@ -14,18 +14,70 @@ def dashboard_home():
     user = current_user
     return render_template("dashboard/home.html", store=store, user=user)
 
-@bp.route('/escolher-categorias', methods=['GET', 'POST'])
+
+
+@bp.route('/categorias', methods=['GET'])
 @role_required(UserRole.STORE_OWNER)
-def category_select():
+def category_view():
+    search = request.args.get('search', '')
     store = current_user.store
     user = current_user
+    if search:
+        categorias = StoreCategory.query.filter(
+            StoreCategory.store_id == store.id,
+            StoreCategory.name.ilike(f'%{search}%')
+        ).all()
+    else:
+        categorias = StoreCategory.query.filter_by(store_id=store.id).all()
+    return render_template('dashboard/category_view.html', categories=categorias, user=user)
 
-    # StoreCategory.query.filter_by(store_id=store.id)
 
-    return render_template('dashboard/category_select.html',
-                           user=user,
-                           store=store
-                           )
+
+@bp.route('/categorias/adicionar', methods=['POST'])
+@role_required(UserRole.STORE_OWNER)
+def add_category():
+    nome = request.form.get('name')
+    if nome:
+        nova_categoria = StoreCategory(
+            name=nome,
+            store_id=current_user.store.id,
+            tenant_id=current_user.store.tenant_id
+        )
+        db.session.add(nova_categoria)
+        db.session.commit()
+        flash('Categoria adicionada com sucesso!', 'success')
+    else:
+        flash('O nome da categoria obrigatório.', 'error')
+    return redirect(url_for('dashboard.category_view'))
+
+@bp.route('/categorias/editar/<int:categoria_id>', methods=['POST'])
+@role_required(UserRole.STORE_OWNER)
+def edit_category(categoria_id):
+    categoria = StoreCategory.query.get_or_404(categoria_id)
+    if categoria.store_id != current_user.store.id:
+        flash('Você não tem permissão para editar esta categoria.', 'error')
+        return redirect(url_for('dashboard.category_view'))
+    nome = request.form.get('name')
+    if nome:
+        categoria.name = nome
+        db.session.commit()
+        flash('Categoria atualizada com sucesso!', 'success')
+    else:
+        flash('O nome da categoria  obrigatório.', 'error')
+    return redirect(url_for('dashboard.category_view'))
+
+@bp.route('/categorias/excluir/<int:categoria_id>', methods=['POST'])
+@role_required(UserRole.STORE_OWNER)
+def delete_category(categoria_id):
+    categoria = StoreCategory.query.get_or_404(categoria_id)
+    if categoria.store_id != current_user.store.id:
+        flash('Você não tem permissão para excluir esta categoria.', 'error')
+        return redirect(url_for('dashboard.category_view'))
+    db.session.delete(categoria)
+    db.session.commit()
+    flash('Categoria excluída com sucesso!', 'success')
+    return redirect(url_for('dashboard.category_view'))
+
 
 
 
