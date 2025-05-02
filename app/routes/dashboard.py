@@ -10,7 +10,9 @@ bp = Blueprint("dashboard", __name__)
 @bp.route("/")
 @role_required(UserRole.STORE_OWNER)
 def dashboard_home():
-    return render_template("dashboard/home.html")
+    store = current_user.store
+    user = current_user
+    return render_template("dashboard/home.html", store=store, user=user)
 
 @bp.route('/escolher-categorias', methods=['GET', 'POST'])
 @role_required(UserRole.STORE_OWNER)

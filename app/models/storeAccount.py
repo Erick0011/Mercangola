@@ -7,6 +7,11 @@ class StoreAccessLevel(Enum):
     MANAGER = "manager"                  # gerente
     ASSISTANT_MANAGER = "assistant_manager"  # assistente do gerente
 
+STORE_ACCESS_LEVEL_LABELS = {
+    StoreAccessLevel.OWNER: "Dono da loja",
+    StoreAccessLevel.MANAGER: "Gerente",
+    StoreAccessLevel.ASSISTANT_MANAGER: "Assistente do gerente"
+}
 
 class StoreAccount(User):
     __tablename__ = 'store_accounts'
@@ -20,6 +25,10 @@ class StoreAccount(User):
     __mapper_args__ = {
         'polymorphic_identity': UserRole.STORE_OWNER,
     }
+
+    @property
+    def access_level_label(self):
+        return STORE_ACCESS_LEVEL_LABELS.get(self.store_access_level, "Desconhecido")
 
     def __repr__(self):
         return f"<StoreAccount {self.email} - {self.store_access_level.value}>"
