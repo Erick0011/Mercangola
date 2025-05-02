@@ -12,15 +12,14 @@ class StoreAccount(User):
     __tablename__ = 'store_accounts'
     id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
 
-    is_owner = db.Column(db.Boolean, default=False)
     store_id = db.Column(db.Integer, db.ForeignKey('stores.id'), nullable=False)
-    store_access_level = db.Column(db.Enum(StoreAccessLevel), nullable=True)
+    store_access_level = db.Column(db.Enum(StoreAccessLevel), nullable=False)
 
-    store = db.relationship("Store", backref="accounts")
+    store = db.relationship("Store", back_populates="accounts")
 
     __mapper_args__ = {
         'polymorphic_identity': UserRole.STORE_OWNER,
     }
 
     def __repr__(self):
-        return f"<StoreAccount {self.email} - Owner: {self.is_owner}>"
+        return f"<StoreAccount {self.email} - {self.store_access_level.value}>"
