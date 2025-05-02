@@ -5,11 +5,22 @@
 {% block title2 %}Categorias{% endblock %}
 
 {% block content %}
-<!-- Botão para adicionar categoria -->
-<button type="button" class="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#modalAdicionarCategoria">
+
+<div class="card h-100 p-0 radius-12">
+<div class="card-header border-bottom bg-base py-16 px-24 d-flex align-items-center flex-wrap gap-3 justify-content-between">
+    <div class="d-flex align-items-center flex-wrap gap-3">
+        <form class="navbar-search">
+            <input type="text" class="bg-base h-40-px w-auto" name="search" placeholder="Pesquisar">
+            <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
+        </form>
+    </div>
+
+    <!-- Botão para adicionar categoria -->
+    <button type="button" class="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#modalAdicionarCategoria">
     <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
     Adicionar Categoria
-</button>
+    </button>
+</div>
 
 <!-- Tabela de categorias -->
 <div class="card-body p-24">
@@ -103,5 +114,5 @@
         </div>
     </div>
 </div>
-
+</div>
 {% endblock %}
