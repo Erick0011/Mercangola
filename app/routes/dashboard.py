@@ -17,34 +17,13 @@ def dashboard_home():
 @bp.route('/escolher-categorias', methods=['GET', 'POST'])
 @role_required(UserRole.STORE_OWNER)
 def category_select():
-    store = Store.query.filter_by(owner_id=current_user.id).first_or_404()
-    todas_categorias = Category.query.all()
+    store = current_user.store
+    user = current_user
 
-    if request.method == 'POST':
-        selecionadas_ids = request.form.getlist('categories')
-
-        # Apagar categorias antigas da loja
-        StoreCategory.query.filter_by(store_id=store.id).delete()
-
-        # Adicionar novas categorias selecionadas
-        for cid in selecionadas_ids:
-            nova = StoreCategory(
-                store_id=store.id,
-                tenant_id=store.tenant_id,  # pegando o tenant da store
-                category_id=int(cid)
-            )
-            db.session.add(nova)
-
-        db.session.commit()
-        flash('Categorias atualizadas com sucesso!', 'success')
-        return redirect(url_for('dashboard.category_select'))
-
-    # Categorias que já estão cadastradas para essa loja
-    categorias_atuais = [sc.category_id for sc in store.categories]
+    # StoreCategory.query.filter_by(store_id=store.id)
 
     return render_template('dashboard/category_select.html',
-                           categorias=todas_categorias,
-                           selecionadas=categorias_atuais,
+                           user=user,
                            store=store
                            )
 
