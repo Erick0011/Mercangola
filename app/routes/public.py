@@ -1,4 +1,4 @@
-from app.services import login_user_service, StoreOwnerRegistrationForm, create_store_owner
+from app.services import login_user_service, create_store_with_owner
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import logout_user
 from app.models import User
@@ -65,7 +65,7 @@ def register_store_owner():
         # Termos
         if not accepted_terms:
             errors.append("Você precisa aceitar os termos.")
-            print("Debug 2: ", accepted_terms)
+
 
         if errors:
             for error in errors:
@@ -73,9 +73,10 @@ def register_store_owner():
                 print(error)
             return redirect(url_for('public.register_store_owner'))
 
-        flash("Formulário válido! (Salvar depois)", 'success')
-        print("Formulário válido! (Salvar depois)")
-        return redirect(url_for('public.register_store_owner'))
+        user = create_store_with_owner(name, email, password, store_name, slug)
+        flash("Conta criada com sucesso! Você foi conectado automaticamente.", "success")
+
+        return login_user_service(user)
 
     return render_template("public/register_store_owner.html")
 
